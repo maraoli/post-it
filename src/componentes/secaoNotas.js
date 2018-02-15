@@ -14,7 +14,7 @@ function SecaoNotas(props){
     }
 
     const children = [];
-    // Usar contaTotal é diferente de usar .length, n tem length de listaNotas, so de usa lista interna
+    // Usar contaTotal é diferente de usar .length, n tem length de listaNotas, so de sua lista interna
     for(let i = 0; i<props.listaNotas.contaTotal(); i++){
         const propsFormNotas = {
             posicao: i, 
