@@ -15,6 +15,27 @@ function FormButton(props, children) {
     // o children podia ser props.children tbm
     return React.createElement('button', props, children)
 }
+
+// // *********** SEM REACT:
+// // props param
+// function FormButton(props) {
+//     let formButton = document.createElement('button');
+    
+//     // destructuring
+//     formButton.setAttribute('class', props.className);
+//     formButton.setAttribute('type', props.type);
+    
+//     formButton.addEventListener('click', props.click);
+
+//     // inner - dentro da tag <button>SeiLa</button>
+//     formButton.innerHTML = props.children;
+
+    
+//     return formButton;
+// }
+
+
+// FORMA 1 -continuacao:
 export default FormButton;
 
 // FORMA 2:
