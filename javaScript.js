@@ -73,5 +73,6 @@ function atualizarNota(recebeTitulo, recebeTexto, recebeForm, recebeProxTag , i,
         notas[i].texto = recebeTexto.value;
         notas[i].editando = false;
         atualizarSecao(naSecao);
+        console.log(notas[i]);
     }
 }
