@@ -56,11 +56,11 @@ function criaComponenteBotaoConcluido(adicionarNota, posicao, notaAlterada){
         className: 'note__control', 
         type: 'button',
         onClick: (event) => {
-            props.adicionarNota(notaAlterada.titulo, notaAlterada.texto, event.target.form, posicao);
+            adicionarNota(notaAlterada.titulo, notaAlterada.texto, event.target.form, posicao);
         }
     }
     const children = 'Concluído'
-    return React.creatElement('button', props, children);
+    return React.creatElement(FromButton, props, children);
 }
 
 function criaComponenteBotaoRemover(removerNota, posicao){
@@ -69,7 +69,7 @@ function criaComponenteBotaoRemover(removerNota, posicao){
         type: 'button', 
         // remove children
         onClick: event => {
-            props.removerNota(event, posicao);
+            removerNota(event, posicao);
         }
     };
 
@@ -83,12 +83,15 @@ function criaComponenteBotaoRemover(removerNota, posicao){
     });
     return React.creatElement('button', props, children); 
 }
-// destructuring / immutable
-// extract function
-// variable shorthand declaration
-function FormNotas(props, children) {
+
+// FORMA 1 - DESTRUCTURING
+function FormNotas({notaAtual, posicao, adicionarNota, removerNota, editarFormulario}) {
+
+    // FORMA 2 - DESTRUCTURING
+    // const {notaAtual, posicao, adicionarNota, removerNota, editarFormulario} = props;
+
     // é uma copia da nota passada nos parametros pra criar os elementos
-    let notaAlterada = new Nota(props.notaAtual.titulo, props.notaAtual.texto, props.notaAtual.editando);
+    let notaAlterada = new Nota(notaAtual.titulo, notaAtual.texto, notaAtual.editando);
 
     let inputTitulo = criaComponenteInputTitulo(notaAlterada);
 
@@ -96,20 +99,16 @@ function FormNotas(props, children) {
 
     let formNotas;
 
-    let formProps = {
+    let props = {
         className: 'note',
-        // onClick: click
-        // ou:
-        // Click: click
-    }
+    };
     let children;
-    let onClick;
 
     // se a nota estiver editando tem os botões
-    if (props.notaAtual.editando) {
-        let botaoRemover = criaComponenteBotaoRemover(props.removerNota, props.posicao);
+    if (notaAlterada.editando) {
+        let botaoRemover = criaComponenteBotaoRemover(removerNota, posicao);
 
-        let botaoConcluido = criaComponenteBotaoConcluido(props.adicionarNota, props.posicao, notaAlterada);
+        let botaoConcluido = criaComponenteBotaoConcluido(adicionarNota, posicao, notaAlterada);
 
         children = [buttonRemover, inputTitulo, textareaTexto, buttonConcluido];
     } 
@@ -117,91 +116,13 @@ function FormNotas(props, children) {
     else {
         children = [inputTitulo, textareaTexto];
 
-        click = () => {
-            props.editarFormulario(props.posicao);
+        // add onClick dentro do props let acima
+        props.onClick = () => {
+            editarFormulario(posicao);
         }
     }
 
-    formNotas = React.creatElement(Form, formProps, children);
-
-    return formNotas;
+    return React.creatElement(Form, formProps, children);
 }
 
 export default FormNotas;
-
-// ********************SEM REACT
-// import Form from './form.js';
-// import FormInput from './formInput.js';
-// import FormTextarea from './formTextarea.js';
-// import FormButton from './formButton.js';
-
-// // destructuring / immutable
-// // extract function
-// // variable shorthand declaration
-// function FormNotas(props) {
-//     let formNotas;
-
-//     // criando tags
-//     let inputTitulo = new FormInput({
-//         className: 'note__title',
-//         type: 'text',
-//         name: 'titulo',
-//         placeholder: 'Título',
-//         readonly: !props.notaAtual.editando,
-//         value: props.notaAtual.titulo
-//     });
-
-//     let textareaTexto = new FormTextarea({
-//         className: 'note__body', 
-//         name: 'texto', 
-//         placeholder: 'Criar uma nota...', 
-//         rows: 5, 
-//         readonly: !props.notaAtual.editando,
-//         children: props.notaAtual.texto
-//     });
-
-//     let children;
-//     let click;
-
-//     // se a nota estiver editando tem os botões
-//     if (props.notaAtual.editando) {
-//         let buttonRemover = new FormButton({
-//             className: 'note__control', 
-//             type: 'button', 
-//             children: '<i class="fa fa-times" aria-hidden="true"></i>',
-//             click: event => {
-//                 props.removerNota(event, props.posicao);
-//             }
-//         });
-
-//         let buttonConcluido = new FormButton({
-//             className: 'note__control', 
-//             type: 'button', 
-//             // caso do botão concluido
-//             children: 'Concluído',
-//             click: () => {
-//                 props.adicionarNota(inputTitulo, textareaTexto, formNotas, props.posicao);
-//             }
-//         });
-
-//         children = [buttonRemover, inputTitulo, textareaTexto, buttonConcluido];
-//     } 
-//     // se n tiver n tem botoes
-//     else {
-//         children = [inputTitulo, textareaTexto];
-
-//         click = () => {
-//             props.editarFormulario(props.posicao);
-//         }
-//     }
-
-//     formNotas = new Form({
-//         className: 'note',
-//         children: children,
-//         click: click
-//     });
-
-//     return formNotas;
-// }
-
-// export default FormNotas;
