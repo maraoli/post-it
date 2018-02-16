@@ -13,17 +13,18 @@ class ListaNotas {
     adiciona(novoTitulo, novoTexto) {
         let nota = new Nota(novoTitulo, novoTexto);
         this._listaInterna.push(nota);
-        this._observador();
+        // pq ela espera receber a lista, que é o this aki.
+        this._observador(this);
     }
 
     remove(posicao, quantidade) {
         this._listaInterna.splice(posicao, 1);
-        this._observador();
+        this._observador(this);
     }
 
     edita(posicao) {
         this._listaInterna[posicao].editando = true;
-        this._observador();
+        this._observador(this);
     }
 
     // dif do add - aki a nota já existe
@@ -31,7 +32,7 @@ class ListaNotas {
         this._listaInterna[posicao].titulo = novoTitulo;
         this._listaInterna[posicao].texto = novoTexto;
         this._listaInterna[posicao].editando = false;
-        this._observador();
+        this._observador(this);
     }
 
     pega(posicao) {

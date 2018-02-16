@@ -8,27 +8,6 @@ import SecaoNotas from './sectionNotas'
 import FormNotas from './formNotas'
 import ListaNotas from '../listaNotas'
 
-// sessao notas e montaFromNotas usam essas 3 funcoes por isso deixamos fora
-// recortei as 3 do index
-const editarFormulario = posicao => listaNotas.edita(posicao);
-
-const adicionarNota = (inputTitulo, textareaTexto, formulario, posicao) => {
-
-    if (listaNotas.pega(posicao)) {
-        listaNotas.salva(posicao, inputTitulo.value, textareaTexto.value);
-    }
-
-    else {
-        listaNotas.adiciona(inputTitulo.value, textareaTexto.value);
-        formulario.reset();
-    }
-}
-
-const removerNota = (evento, posicao) => {
-    evento.stopPropagation();
-    listaNotas.remove(posicao);
-}
-
 // form index.js
 const listaNotas = new ListaNotas(observaMudancasNaLista);
 
@@ -62,14 +41,58 @@ function montaSectionNotas(){
     return React.createElement(SectionNotas,props)
 }
 
+// render e setState existem em .Componet
 class Page extends React.Component {
     constructor(props){
         // chama classe pai
         super(props);
         this.state = {
-            listaNotas: new ListaNotas()
+            listaNotas: new ListaNotas(this.atualizaPagina)
         }
     }
+
+    // MODO 1 - Nova função atualiza page
+    atualizaPagina(listaNotas){
+        console.log('Quem é this?', this);
+        // stado é dados da pagina/componente
+        // this é Page
+        this.setState({
+            listaNotas: novaLista
+        });
+    }
+
+    // sessao notas e montaFromNotas usam essas 3 funcoes por isso deixamos fora
+    // recortei as 3 do index
+    editarFormulario(posicao){
+        listaNotas.edita(posicao);
+    }
+
+    adicionarNota(inputTitulo, textareaTexto, formulario, posicao){
+        if (listaNotas.pega(posicao)) {
+            listaNotas.salva(posicao, inputTitulo.value, textareaTexto.value);
+        }
+        else {
+            listaNotas.adiciona(inputTitulo.value, textareaTexto.value);
+            formulario.reset();
+        }
+    }
+
+    removerNota(evento, posicao){
+        evento.stopPropagation();
+        listaNotas.remove(posicao);
+    }
+
+    // MODO 2
+    // atualizaPagina(listaNotas){
+    //     const state = {
+    //         listaNotas: novaLista
+    //     }
+    //     this.setState();
+    // }
+
+    // o nome precisa ser RENDER pq eu reescrevo um elemento da class pai
+    // ele cria a tag main
+    // quando atualiza muda a tela
     render(){
         const props = {className: 'container'}
 
