@@ -6,6 +6,7 @@ import React from 'react'
 import Nota from '../nota'
 import SecaoNotas from './sectionNotas'
 import FormNotas from './formNotas'
+import ListaNotas from '../listaNotas'
 
 // sessao notas e montaFromNotas usam essas 3 funcoes por isso deixamos fora
 // recortei as 3 do index
@@ -27,6 +28,9 @@ const removerNota = (evento, posicao) => {
     evento.stopPropagation();
     listaNotas.remove(posicao);
 }
+
+// form index.js
+const listaNotas = new ListaNotas(observaMudancasNaLista);
 
 function montaFormNotas(){
     const props ={
