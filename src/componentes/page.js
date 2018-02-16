@@ -97,7 +97,7 @@ class Page extends React.Component {
         const props = {className: 'container'}
 
         let formNotas = montaFormNotas(this.adicionarNota, this.removerNota, this.editarFormulario)
-        let sectionNotas = montaSectionNotas()
+        let sectionNotas = montaSectionNotas(this.state.listaNotas, this.adicionarNota, this.removerNota, this.editarFormulario)
         const children = [formNotas, sectionNotas]
 
         return React.createElement('main', props, children)
