@@ -59,7 +59,7 @@ function montaSectionNotas(){
         editarFormulario
     }
 
-    return React.createElement(,props)
+    return React.createElement(SectionNotas,props)
 }
 
 function Page(){
