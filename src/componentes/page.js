@@ -47,7 +47,7 @@ class Page extends React.Component {
         // chama classe pai
         super(props);
         this.state = {
-            listaNotas: new ListaNotas(this.atualizaPagina)
+           listaNotas: new ListaNotas(this.atualizaPagina),
         }
     }
 
@@ -64,22 +64,22 @@ class Page extends React.Component {
     // sessao notas e montaFromNotas usam essas 3 funcoes por isso deixamos fora
     // recortei as 3 do index
     editarFormulario(posicao){
-        listaNotas.edita(posicao);
+        this.state.listaNotas.edita(posicao);
     }
 
     adicionarNota(inputTitulo, textareaTexto, formulario, posicao){
-        if (listaNotas.pega(posicao)) {
-            listaNotas.salva(posicao, inputTitulo.value, textareaTexto.value);
+        if (this.state.listaNotas.pega(posicao)) {
+            this.state.listaNotas.salva(posicao, inputTitulo.value, textareaTexto.value);
         }
         else {
-            listaNotas.adiciona(inputTitulo.value, textareaTexto.value);
+            this.state.listaNotas.adiciona(inputTitulo.value, textareaTexto.value);
             formulario.reset();
         }
     }
 
     removerNota(evento, posicao){
         evento.stopPropagation();
-        listaNotas.remove(posicao);
+        this.state.listaNotas.remove(posicao);
     }
 
     // MODO 2
@@ -96,7 +96,7 @@ class Page extends React.Component {
     render(){
         const props = {className: 'container'}
 
-        let formNotas = montaFormNotas()
+        let formNotas = montaFormNotas(this.adicionarNota, this.removerNota, this.editarFormulario)
         let sectionNotas = montaSectionNotas()
         const children = [formNotas, sectionNotas]
 
