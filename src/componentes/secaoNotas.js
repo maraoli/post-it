@@ -27,7 +27,7 @@ function SecaoNotas(props){
         children.push(formNotas);
     } 
 
-// 16/02/2018
+    // 16/02/2018
 
     // aqui ele faz um for escondido:
     const children = props.listaNotas.map((notaAtual, posicao) => (
