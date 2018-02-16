@@ -62,14 +62,33 @@ function montaSectionNotas(){
     return React.createElement(SectionNotas,props)
 }
 
-function Page(){
-    const props = {className: 'container'}
+class Page extends React.Component {
+    constructor(props){
+        // chama classe pai
+        super(props);
+        this.state = {
+            listaNotas: new ListaNotas()
+        }
+    }
+    render(){
+        const props = {className: 'container'}
 
-    let formNotas = montaFormNotas()
-    let sectionNotas = montaSectionNotas()
-    const children = [formNotas, sectionNotas]
+        let formNotas = montaFormNotas()
+        let sectionNotas = montaSectionNotas()
+        const children = [formNotas, sectionNotas]
 
-    return React.createElement('main', props, children)
+        return React.createElement('main', props, children)
+    }
 }
+
+// function Page(){
+//     const props = {className: 'container'}
+
+//     let formNotas = montaFormNotas()
+//     let sectionNotas = montaSectionNotas()
+//     const children = [formNotas, sectionNotas]
+
+//     return React.createElement('main', props, children)
+// }
 
 export default Page
