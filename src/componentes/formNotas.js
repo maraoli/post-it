@@ -11,9 +11,6 @@ import FormTextarea from './formTextarea.js';
 import FormButton from './formButton.js';
 import Nota from  '../nota';
 
-// cria e retorna o input form
-// tiro o props e recebo notaAtual direto
-// sem this. posso converter em arron function
 function criaComponenteInputTitulo(notaAlterada){
     const props = {
         className: 'note__title',

@@ -2,35 +2,21 @@
 import React from 'react'
 
 import Section from './section'
-import FormNotas from './fromNotas'
+import FormNotas from './formNotas'
 
 // sabe da lista de notas - props
 // cada item tem um for, filho cria form notas, insere no children fa função,
 // retorna o elemento react
 
-function SecaoNotas(props){
+function SecaoNotas({listaNotas,adicionarNota,removerNota, editarFormulario}){
     const props = {
         className: 'nova-nota'
     }
-
-    const children = [];
-    // Usar contaTotal é diferente de usar .length, n tem length de listaNotas, so de sua lista interna
-    for(let i = 0; i<props.listaNotas.contaTotal(); i++){
-        const propsFormNotas = {
-            posicao: i, 
-            notaAtual: props.listaNotas.pega(i), 
-            editarFormulario: props.editarFormulario, 
-            adicionarNota: props.adicionarNota, 
-            removerNota: props.removerNota
-        }
-        const formNotas = React.creatElement(FormNotas, propsFormNotas); 
-        children.push(formNotas);
-    } 
-
+    
     // 16/02/2018
 
     // aqui ele faz um for escondido:
-    const children = props.listaNotas.map((notaAtual, posicao) => (
+    const children = props.listaNotas.pegaTodos().map((notaAtual, posicao) => (
         montaUmFormNota(posicao, props)
     ));
 

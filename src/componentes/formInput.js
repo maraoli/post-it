@@ -8,7 +8,7 @@ function FormInput(props){
     return React.creatElement('input', props)
 }
 
-export default FormImput;
+export default FormInput;
 
 // // FORMA 2.1 - melhor
 // export default props => React.createElement('input', props)
