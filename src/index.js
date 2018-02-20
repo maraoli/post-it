@@ -5,6 +5,6 @@ import Page from './componentes/page'
 // componente inserido , elemento DOM inserido ( dom real) 
 ReactDOM.render(
     // props = null
-    React.creatElement('h1', {class: 'heads'}, 'Olá mundo!'),
+    // React.createElement('h1', {className: 'heads'}, 'Olá mundo!'),
     document.getElementById('root')
 )

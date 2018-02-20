@@ -1014,7 +1014,8 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 // componente inserido , elemento DOM inserido ( dom real) 
 _reactDom2.default.render(
 // props = null
-_react2.default.creatElement('h1', { class: 'heads' }, 'Olá mundo!'), document.getElementById('root'));
+// React.createElement('h1', {className: 'heads'}, 'Olá mundo!'),
+document.getElementById('root'));
 
 /***/ }),
 /* 16 */
