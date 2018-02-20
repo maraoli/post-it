@@ -1015,7 +1015,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 _reactDom2.default.render(
 // props = null
 // React.createElement('h1', {className: 'heads'}, 'Olá mundo!'),
-document.getElementById('root'));
+_react2.default.createElement(_page2.default, null), document.getElementById('root'));
 
 /***/ }),
 /* 16 */
@@ -18534,7 +18534,11 @@ function criaComponenteInputTitulo(notaAlterada) {
             // target - é a tag q mudo do event recebido
             notaAlterada.titulo = event.target.value;
         }
-    };
+        // 20/02
+        // tem posicao e não esta editando
+    };if (posicao !== undefined && !notaCopiada.editando) {
+        props.readOnly = true;
+    }
     return _react2.default.creatElement(_formInput2.default, props);
 }
 
@@ -18555,7 +18559,10 @@ function criaComponenteTextareaTexto(notaAlterada) {
         onChange: function onChange(event) {
             notaAlterada.titulo = event.target.value;
         }
-    };
+        // 20/02
+    };if (posicao !== undefined && !notaCopiada.editando) {
+        props.readOnly = true;
+    }
     return _react2.default.creatElement(_formTextarea2.default, props);
 }
 
@@ -18609,9 +18616,11 @@ function FormNotas(_ref) {
     // é uma copia da nota passada nos parametros pra criar os elementos
     var notaAlterada = new _nota2.default(notaAtual.titulo, notaAtual.texto, notaAtual.editando);
 
-    var inputTitulo = criaComponenteInputTitulo(notaAlterada);
+    var inputTitulo = criaComponenteInputTitulo(notaAlterada, posicao);
 
-    var textareaTexto = criaComponenteTextareaTexto(notaAlterada);
+    var textareaTexto = criaComponenteTextareaTexto(notaAlterada, posicao);
+    var botaoRemover = criaComponenteBotaoRemover(removerNota, posicao);
+    var botaoConcluido = criaComponenteBotaoConcluido(adicionarNota, posicao, notaAlterada);
 
     var formNotas = void 0;
 
@@ -18620,24 +18629,24 @@ function FormNotas(_ref) {
     };
     var children = void 0;
 
-    // se a nota estiver editando tem os botões
-    if (notaAlterada.editando) {
-        var botaoRemover = criaComponenteBotaoRemover(removerNota, posicao);
-
-        var botaoConcluido = criaComponenteBotaoConcluido(adicionarNota, posicao, notaAlterada);
-
-        children = [buttonRemover, inputTitulo, textareaTexto, buttonConcluido];
-    }
-    // se n tiver n tem botoes
-    else {
-            children = [inputTitulo, textareaTexto];
-
-            // add onClick dentro do props let acima
-            props.onClick = function () {
-                editarFormulario(posicao);
-            };
+    // 20/02/18
+    if (posicao === undefined) {
+        // template de nova nota
+        children = [inputTitulo, textareaTexto, buttonConcluido];
+    } else {
+        // se a nota estiver editando tem os botões
+        if (notaAlterada.editando) {
+            children = [buttonRemover, inputTitulo, textareaTexto, buttonConcluido];
         }
-
+        // se n tiver n tem botoes
+        else {
+                children = [inputTitulo, textareaTexto];
+                // add onClick dentro do props let acima
+                props.onClick = function () {
+                    editarFormulario(posicao);
+                };
+            }
+    }
     return _react2.default.creatElement(_form2.default, formProps, children);
 }
 
@@ -18862,8 +18871,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 
 function montaUmFormNotas(posicao, notaAtual, adicionarNota, removerNota, editarFormulario) {
     var props = {
-        key: 'sadas',
-        posicao: posicao,
+        key: posicao,
         notaAtual: notaAtual,
         removerNota: removerNota,
         adicionarNota: adicionarNota,

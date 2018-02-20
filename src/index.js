@@ -6,5 +6,6 @@ import Page from './componentes/page'
 ReactDOM.render(
     // props = null
     // React.createElement('h1', {className: 'heads'}, 'Olá mundo!'),
+    React.createElement(Page, null), 
     document.getElementById('root')
 )

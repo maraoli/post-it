@@ -28,7 +28,12 @@ function criaComponenteInputTitulo(notaAlterada){
             // target - é a tag q mudo do event recebido
             notaAlterada.titulo = event.target.value;
         }
-    };
+    }
+    // 20/02
+    // tem posicao e não esta editando
+    if(posicao !== undefined && !notaCopiada.editando){
+        props.readOnly = true
+    }
     return React.creatElement(FormInput, props);
 }
 
@@ -46,7 +51,11 @@ function criaComponenteTextareaTexto(notaAlterada){
         onChange: (event)=>{
             notaAlterada.titulo = event.target.value;
         }
-    };
+    }
+    // 20/02
+    if(posicao !== undefined && !notaCopiada.editando){
+        props.readOnly = true
+    }
     return React.creatElement(FormTextarea,props)
 }
 
@@ -94,9 +103,11 @@ function FormNotas({notaAtual, posicao, adicionarNota, removerNota, editarFormul
     // é uma copia da nota passada nos parametros pra criar os elementos
     let notaAlterada = new Nota(notaAtual.titulo, notaAtual.texto, notaAtual.editando);
 
-    let inputTitulo = criaComponenteInputTitulo(notaAlterada);
+    let inputTitulo = criaComponenteInputTitulo(notaAlterada, posicao);
 
-    let textareaTexto = criaComponenteTextareaTexto(notaAlterada);
+    let textareaTexto = criaComponenteTextareaTexto(notaAlterada, posicao);
+    let botaoRemover = criaComponenteBotaoRemover(removerNota, posicao);
+    let botaoConcluido = criaComponenteBotaoConcluido(adicionarNota, posicao, notaAlterada);
 
     let formNotas;
 
@@ -105,24 +116,25 @@ function FormNotas({notaAtual, posicao, adicionarNota, removerNota, editarFormul
     };
     let children;
 
-    // se a nota estiver editando tem os botões
-    if (notaAlterada.editando) {
-        let botaoRemover = criaComponenteBotaoRemover(removerNota, posicao);
-
-        let botaoConcluido = criaComponenteBotaoConcluido(adicionarNota, posicao, notaAlterada);
-
-        children = [buttonRemover, inputTitulo, textareaTexto, buttonConcluido];
-    } 
-    // se n tiver n tem botoes
-    else {
-        children = [inputTitulo, textareaTexto];
-
-        // add onClick dentro do props let acima
-        props.onClick = () => {
-            editarFormulario(posicao);
-        }
+    // 20/02/18
+    if(posicao === undefined){
+        // template de nova nota
+        children = [inputTitulo, textareaTexto, buttonConcluido]
     }
-
+    else{
+        // se a nota estiver editando tem os botões
+        if (notaAlterada.editando) {
+            children = [buttonRemover, inputTitulo, textareaTexto, buttonConcluido];
+        } 
+        // se n tiver n tem botoes
+        else {
+            children = [inputTitulo, textareaTexto];
+            // add onClick dentro do props let acima
+            props.onClick = () => {
+                editarFormulario(posicao);
+            }
+        }
+    }   
     return React.creatElement(Form, formProps, children);
 }
 

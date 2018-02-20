@@ -10,8 +10,7 @@ import FormNotas from './formNotas'
 
 function montaUmFormNotas(posicao, notaAtual, adicionarNota, removerNota, editarFormulario) {
     const props = {
-        key:'sadas',
-        posicao,
+        key: posicao,
         notaAtual,
         removerNota,
         adicionarNota,
