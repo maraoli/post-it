@@ -8,14 +8,24 @@ import FormNotas from './formNotas'
 // cada item tem um for, filho cria form notas, insere no children fa função,
 // retorna o elemento react
 
+function montaUmFormNotas(posicao, notaAtual, adicionarNota, removerNota, editarFormulario) {
+    const props = {
+        key:'sadas',
+        posicao,
+        notaAtual,
+        removerNota,
+        adicionarNota,
+        editarFormulario,
+    }
+
+    return <FormNotas key={posicao} {...props} />
+}
+
 function SecaoNotas({listaNotas,adicionarNota,removerNota, editarFormulario}){
     const props = {
         className: 'nova-nota'
     }
-    
-    // 16/02/2018
 
-    // aqui ele faz um for escondido:
     const children = props.listaNotas.pegaTodos().map((notaAtual, posicao) => (
         montaUmFormNota(posicao, props)
     ));

@@ -9,10 +9,11 @@ import FormNotas from './formNotas'
 import ListaNotas from '../listaNotas'
 
 // form index.js
-const listaNotas = new ListaNotas(observaMudancasNaLista);
+// const listaNotas = new ListaNotas(observaMudancasNaLista);
 
 function montaFormNotas(){
     const props ={
+        key:'form-note',
         posicao: null, 
         // ou undefined, ou nem passa esse parametro
         // titulo e texto da nova nota estao vazios
@@ -31,7 +32,7 @@ function montaFormNotas(){
 
 function montaSectionNotas(){
     const props ={
-        // da maneira nova:
+        key:'section-notes',
         listaNotas,
         adicionarNota,
         removerNota,
@@ -81,18 +82,6 @@ class Page extends React.Component {
         evento.stopPropagation();
         this.state.listaNotas.remove(posicao);
     }
-
-    // MODO 2
-    // atualizaPagina(listaNotas){
-    //     const state = {
-    //         listaNotas: novaLista
-    //     }
-    //     this.setState();
-    // }
-
-    // o nome precisa ser RENDER pq eu reescrevo um elemento da class pai
-    // ele cria a tag main
-    // quando atualiza muda a tela
     render(){
         const props = {className: 'container'}
 
@@ -103,15 +92,5 @@ class Page extends React.Component {
         return React.createElement('main', props, children)
     }
 }
-
-// function Page(){
-//     const props = {className: 'container'}
-
-//     let formNotas = montaFormNotas()
-//     let sectionNotas = montaSectionNotas()
-//     const children = [formNotas, sectionNotas]
-
-//     return React.createElement('main', props, children)
-// }
 
 export default Page

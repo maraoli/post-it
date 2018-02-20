@@ -13,6 +13,7 @@ import Nota from  '../nota';
 
 function criaComponenteInputTitulo(notaAlterada){
     const props = {
+        key: 'note-comp',
         className: 'note__title',
         type: 'text',
         name: 'titulo',
@@ -34,6 +35,7 @@ function criaComponenteInputTitulo(notaAlterada){
 // notaCopiada = notaEditada = notaAlterada
 function criaComponenteTextareaTexto(notaAlterada){
     const props ={
+        key: 'note-textArea',
         className: 'note__body', 
         name: 'texto', 
         placeholder: 'Criar uma nota...', 
@@ -50,6 +52,7 @@ function criaComponenteTextareaTexto(notaAlterada){
 
 function criaComponenteBotaoConcluido(adicionarNota, posicao, notaAlterada){
     const props = {
+        key: 'note-addBotao',
         className: 'note__control', 
         type: 'button',
         onClick: (event) => {
@@ -62,6 +65,7 @@ function criaComponenteBotaoConcluido(adicionarNota, posicao, notaAlterada){
 
 function criaComponenteBotaoRemover(removerNota, posicao){
     const props = {
+        key: 'note-removeBotao',
         className: 'note__control', 
         type: 'button', 
         // remove children

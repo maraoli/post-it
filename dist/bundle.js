@@ -575,12 +575,6 @@ var _createClass = function () { function defineProperties(target, props) { for 
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
-// Aqui ele tem as funções (get /set) de uma nota e tbm 
-// a inicialização de uma nota (constructor)
-
-// get e set só modificam a forma de exibção e edição, 
-// aqui eles estão padrão mas eu posso alterar e colocar condições.
-
 var Nota = function () {
     function Nota(novoTitulo, novoTexto) /*icone = null*/{
         var novoEditando = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : false;
@@ -591,13 +585,6 @@ var Nota = function () {
         this._texto = novoTexto;
         this._editando = novoEditando;
     }
-
-    // *********SEM REACT
-    // constructor(novoTitulo, novoTexto, /*icone = null*/) {
-    //     this._titulo = novoTitulo;
-    //     this._texto = novoTexto;
-    //     this._editando = false;
-    // }
 
     _createClass(Nota, [{
         key: "titulo",
@@ -18381,10 +18368,11 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 // MAIN
 
 // form index.js
-var listaNotas = new _listaNotas2.default(observaMudancasNaLista);
+// const listaNotas = new ListaNotas(observaMudancasNaLista);
 
 function montaFormNotas() {
     var props = {
+        key: 'form-note',
         posicao: null,
         // ou undefined, ou nem passa esse parametro
         // titulo e texto da nova nota estao vazios
@@ -18403,7 +18391,7 @@ function montaFormNotas() {
 
 function montaSectionNotas() {
     var props = {
-        // da maneira nova:
+        key: 'section-notes',
         listaNotas: listaNotas,
         adicionarNota: adicionarNota,
         removerNota: removerNota,
@@ -18469,19 +18457,6 @@ var Page = function (_React$Component) {
             evento.stopPropagation();
             this.state.listaNotas.remove(posicao);
         }
-
-        // MODO 2
-        // atualizaPagina(listaNotas){
-        //     const state = {
-        //         listaNotas: novaLista
-        //     }
-        //     this.setState();
-        // }
-
-        // o nome precisa ser RENDER pq eu reescrevo um elemento da class pai
-        // ele cria a tag main
-        // quando atualiza muda a tela
-
     }, {
         key: 'render',
         value: function render() {
@@ -18497,16 +18472,6 @@ var Page = function (_React$Component) {
 
     return Page;
 }(_react2.default.Component);
-
-// function Page(){
-//     const props = {className: 'container'}
-
-//     let formNotas = montaFormNotas()
-//     let sectionNotas = montaSectionNotas()
-//     const children = [formNotas, sectionNotas]
-
-//     return React.createElement('main', props, children)
-// }
 
 exports.default = Page;
 
@@ -18553,6 +18518,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 
 function criaComponenteInputTitulo(notaAlterada) {
     var props = {
+        key: 'note-comp',
         className: 'note__title',
         type: 'text',
         name: 'titulo',
@@ -18577,6 +18543,7 @@ function criaComponenteInputTitulo(notaAlterada) {
 // podemos omitir a extensao .js
 function criaComponenteTextareaTexto(notaAlterada) {
     var props = {
+        key: 'note-textArea',
         className: 'note__body',
         name: 'texto',
         placeholder: 'Criar uma nota...',
@@ -18593,6 +18560,7 @@ function criaComponenteTextareaTexto(notaAlterada) {
 
 function criaComponenteBotaoConcluido(adicionarNota, posicao, notaAlterada) {
     var props = {
+        key: 'note-addBotao',
         className: 'note__control',
         type: 'button',
         onClick: function onClick(event) {
@@ -18605,6 +18573,7 @@ function criaComponenteBotaoConcluido(adicionarNota, posicao, notaAlterada) {
 
 function criaComponenteBotaoRemover(removerNota, posicao) {
     var props = {
+        key: 'note-removeBotao',
         className: 'note__control',
         type: 'button',
         // remove children
@@ -18720,37 +18689,6 @@ function FormInput(props) {
 } // Aki ele cria tudo que um input precisa ter.
 
 exports.default = FormInput;
-
-// // FORMA 2.1 - melhor
-// export default props => React.createElement('input', props)
-
-// // FORMA 2.2
-// export default (props) => {
-//     return React.createElement('input', props)
-// }
-
-// **********************SEM REACT
-// props param
-// function FormInput(props) {
-//     let formInput = document.createElement('input');
-
-//     // destructuring
-//     formInput.setAttribute('class', props.className);
-//     formInput.setAttribute('type', props.type);
-//     formInput.setAttribute('name', props.name);
-//     formInput.setAttribute('value', props.value);
-//     formInput.setAttribute('placeholder', props.placeholder);
-
-//     // qualquer valor é true
-//     //  so se tiver read
-//     if (props.readonly) {
-//         formInput.setAttribute('readonly', true);
-//     }
-
-//     return formInput;
-// }
-
-// export default FormInput;
 
 /***/ }),
 /* 32 */
@@ -18900,6 +18838,9 @@ Object.defineProperty(exports, "__esModule", {
     value: true
 });
 
+var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; // DESAFIO 15/02/18
+
+
 var _react = __webpack_require__(0);
 
 var _react2 = _interopRequireDefault(_react);
@@ -18918,6 +18859,19 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 // cada item tem um for, filho cria form notas, insere no children fa função,
 // retorna o elemento react
 
+function montaUmFormNotas(posicao, notaAtual, adicionarNota, removerNota, editarFormulario) {
+    var props = {
+        key: 'sadas',
+        posicao: posicao,
+        notaAtual: notaAtual,
+        removerNota: removerNota,
+        adicionarNota: adicionarNota,
+        editarFormulario: editarFormulario
+    };
+
+    return _react2.default.createElement(_formNotas2.default, _extends({ key: posicao }, props));
+}
+
 function SecaoNotas(_ref) {
     var listaNotas = _ref.listaNotas,
         adicionarNota = _ref.adicionarNota,
@@ -18926,16 +18880,15 @@ function SecaoNotas(_ref) {
 
     var props = {
         className: 'nova-nota'
+    };
 
-        // 16/02/2018
-
-        // aqui ele faz um for escondido:
-    };var children = props.listaNotas.pegaTodos().map(function (notaAtual, posicao) {
+    var children = props.listaNotas.pegaTodos().map(function (notaAtual, posicao) {
         return montaUmFormNota(posicao, props);
     });
 
     return _react2.default.creatElement(_section2.default, props, children);
-} // DESAFIO 15/02/18
+}
+
 exports.default = SecaoNotas;
 
 /***/ }),
