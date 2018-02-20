@@ -18375,18 +18375,11 @@ function montaFormNotas() {
     var props = {
         key: 'form-note',
         posicao: null,
-        // ou undefined, ou nem passa esse parametro
-        // titulo e texto da nova nota estao vazios
         notaAtual: new _nota2.default('', ''),
         adicionarNota: adicionarNota,
         removerNota: removerNota,
         editaFormulario: editarFormulario
-        // ou assim, pq como elas tem mesmo nome o ES6 permite
-        // adicionarNota,
-        // removerNota,
-        // editaFormulario
     };
-
     return _react2.default.createElement(FromNotas, props);
 }
 
@@ -18410,9 +18403,18 @@ var Page = function (_React$Component) {
     function Page(props) {
         _classCallCheck(this, Page);
 
+        // 20/02
+        // bind - função que: vide baixo
+        // this sempre se refera a pag clas Page, esse this abaixo represente o class Page
+        // render n precisa pq ele n e passado para componentes filhos
         var _this = _possibleConstructorReturn(this, (Page.__proto__ || Object.getPrototypeOf(Page)).call(this, props));
         // chama classe pai
 
+
+        _this.adicionarNota = _this.adicionarNota.bind(_this);
+        _this.removerNota = _this.removerNota.bind(_this);
+        _this.editarFormulario = _this.editarFormulario.bind(_this);
+        _this.atualizaPagina = _this.atualizaPagina.bind(_this);
 
         _this.state = {
             listaNotas: new _listaNotas2.default(_this.atualizaPagina)
@@ -18442,13 +18444,16 @@ var Page = function (_React$Component) {
         value: function editarFormulario(posicao) {
             this.state.listaNotas.edita(posicao);
         }
+
+        // 20/02
+
     }, {
         key: 'adicionarNota',
-        value: function adicionarNota(inputTitulo, textareaTexto, formulario, posicao) {
+        value: function adicionarNota(titulo, texto, formulario, posicao) {
             if (this.state.listaNotas.pega(posicao)) {
-                this.state.listaNotas.salva(posicao, inputTitulo.value, textareaTexto.value);
+                this.state.listaNotas.salva(posicao, titulo, texto);
             } else {
-                this.state.listaNotas.adiciona(inputTitulo.value, textareaTexto.value);
+                this.state.listaNotas.adiciona(titulo, texto);
                 formulario.reset();
             }
         }
@@ -18573,6 +18578,9 @@ function criaComponenteBotaoConcluido(adicionarNota, posicao, notaAlterada) {
         type: 'button',
         onClick: function onClick(event) {
             adicionarNota(notaAlterada.titulo, notaAlterada.texto, event.target.form, posicao);
+        },
+        onChange: function onChange(event) {
+            return notaAlterada.titulo = event.target.value;
         }
     };
     var children = 'Concluído';

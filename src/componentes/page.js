@@ -15,18 +15,11 @@ function montaFormNotas(){
     const props ={
         key:'form-note',
         posicao: null, 
-        // ou undefined, ou nem passa esse parametro
-        // titulo e texto da nova nota estao vazios
         notaAtual: new Nota('', ''),
         adicionarNota: adicionarNota,
         removerNota: removerNota,
         editaFormulario: editarFormulario
-        // ou assim, pq como elas tem mesmo nome o ES6 permite
-        // adicionarNota,
-        // removerNota,
-        // editaFormulario
     }
-
     return React.createElement(FromNotas, props)
 }
 
@@ -47,6 +40,16 @@ class Page extends React.Component {
     constructor(props){
         // chama classe pai
         super(props);
+
+        // 20/02
+        // bind - função que: vide baixo
+        // this sempre se refera a pag clas Page, esse this abaixo represente o class Page
+        // render n precisa pq ele n e passado para componentes filhos
+        this.adicionarNota = this.adicionarNota.bind(this)
+        this.removerNota = this.removerNota.bind(this)
+        this.editarFormulario = this.editarFormulario.bind(this)
+        this.atualizaPagina = this.atualizaPagina.bind(this)
+
         this.state = {
            listaNotas: new ListaNotas(this.atualizaPagina),
         }
@@ -68,12 +71,13 @@ class Page extends React.Component {
         this.state.listaNotas.edita(posicao);
     }
 
-    adicionarNota(inputTitulo, textareaTexto, formulario, posicao){
+    // 20/02
+    adicionarNota(titulo, texto, formulario, posicao){
         if (this.state.listaNotas.pega(posicao)) {
-            this.state.listaNotas.salva(posicao, inputTitulo.value, textareaTexto.value);
+            this.state.listaNotas.salva(posicao, titulo, texto);
         }
         else {
-            this.state.listaNotas.adiciona(inputTitulo.value, textareaTexto.value);
+            this.state.listaNotas.adiciona(titulo, texto);
             formulario.reset();
         }
     }

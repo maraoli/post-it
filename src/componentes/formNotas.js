@@ -64,9 +64,10 @@ function criaComponenteBotaoConcluido(adicionarNota, posicao, notaAlterada){
         key: 'note-addBotao',
         className: 'note__control', 
         type: 'button',
-        onClick: (event) => {
+        onClick: event => {
             adicionarNota(notaAlterada.titulo, notaAlterada.texto, event.target.form, posicao);
-        }
+        },
+        onChange: event => notaAlterada.titulo = event.target.value
     }
     const children = 'Concluído'
     return React.creatElement(FromButton, props, children);
