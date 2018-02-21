@@ -1048,7 +1048,6 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 // Aqui ele seta todos os atributos de uma nota e 
 // cria um Form com ele e retorna.
 
-
 function criaComponenteInputTitulo(notaCopiada) {
     var props = {
         className: 'note__title',
@@ -1070,9 +1069,6 @@ function criaComponenteInputTitulo(notaCopiada) {
 }
 
 // notaCopiada = notaEditada = notaAlterada
-
-
-// podemos omitir a extensao .js
 function criaComponenteTextareaTexto(notaAlterada) {
     var props = {
         className: 'note__body',
@@ -1093,45 +1089,53 @@ function criaComponenteTextareaTexto(notaAlterada) {
     // new way:
     return _react2.default.createElement(_formTextarea2.default, props);
     // old way:
-    // return React.createElement(FormTextarea,props)
+    //  return React.createElement(FormTextarea,props)
 }
 
 function criaComponenteBotaoConcluido(adicionarNota, posicao, notaAlterada) {
     var props = {
-        key: 'note-addBotao',
         className: 'note__control',
         type: 'button',
         onClick: function onClick(event) {
-            adicionarNota(notaAlterada.titulo, notaAlterada.texto, event.target.form, posicao);
-        },
-        onChange: function onChange(event) {
-            return notaAlterada.titulo = event.target.value;
+            adicionarNota(notaAlterada.titulo, notaAlterada.texto, notaAlterada.posicao);
+            event.target.form.reset();
         }
     };
     var children = 'Concluído';
-    return _react2.default.createElement(_formButton2.default, props, children);
+
+    return _react2.default.createElement(
+        _formButton2.default,
+        props,
+        children
+    );
 }
 
 function criaComponenteBotaoRemover(removerNota, posicao) {
     var props = {
-        key: 'note-removeBotao',
         className: 'note__control',
         type: 'button',
         // remove children
         onClick: function onClick(event) {
+            event.stopPropagation();
             removerNota(event, posicao);
         }
     };
 
     // n precisa de crase, filho vem pra cá
 
+    // way 1:
     // const children = <i class="fa fa-times" aria-hidden="true"></i>
-    // OU:
+    // way 2 :
     var children = _react2.default.createElement('i', {
         className: 'fa fa-times',
         'aria-hidden': true
     });
-    return _react2.default.createElement('button', props, children);
+
+    return _react2.default.createElement(
+        _formButton2.default,
+        props,
+        children
+    );
 }
 
 // FORMA 1 - DESTRUCTURING
@@ -1164,10 +1168,10 @@ function FormNotas(_ref) {
     return _react2.default.createElement(
         _form2.default,
         props,
-        posicao !== undefined && notaAlterada.editando && buttonRemover,
+        posicao !== undefined && notaAlterada.editando && botaoRemover,
         inputTitulo,
         textareaTexto,
-        (!posicao || notaAlterada.editando) && buttonConcluido
+        (!posicao || notaAlterada.editando) && botaoConcluido
     );
 }
 
@@ -18637,12 +18641,11 @@ var Page = function (_React$Component) {
 
     }, {
         key: 'adicionarNota',
-        value: function adicionarNota(titulo, texto, formulario, posicao) {
+        value: function adicionarNota(titulo, texto, posicao) {
             if (this.state.listaNotas.pega(posicao)) {
                 this.state.listaNotas.salva(posicao, titulo, texto);
             } else {
                 this.state.listaNotas.adiciona(titulo, texto);
-                formulario.reset();
             }
         }
     }, {
@@ -18781,7 +18784,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 function _objectWithoutProperties(obj, keys) { var target = {}; for (var i in obj) { if (keys.indexOf(i) >= 0) continue; if (!Object.prototype.hasOwnProperty.call(obj, i)) continue; target[i] = obj[i]; } return target; } // Aki ele cria uma tag form com tufo que ela precisa ter,
 // inclusive filhos
 
-// o filho é passado dentro do props
+// way 1:
 var Form = function Form(_ref) {
     var children = _ref.children,
         props = _objectWithoutProperties(_ref, ['children']);
@@ -18794,7 +18797,11 @@ var Form = function Form(_ref) {
 };
 
 exports.default = Form;
-// standart JS n usa ;
+
+// way 2:
+// export default ({ children, ...props }) => <form {...props}>{children}</form>
+
+// standarde JS n usa ;
 
 /***/ }),
 /* 33 */

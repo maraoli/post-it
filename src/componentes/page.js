@@ -72,13 +72,12 @@ class Page extends React.Component {
     }
 
     // 20/02
-    adicionarNota(titulo, texto, formulario, posicao){
+    adicionarNota(titulo, texto, posicao){
         if (this.state.listaNotas.pega(posicao)) {
             this.state.listaNotas.salva(posicao, titulo, texto);
         }
         else {
             this.state.listaNotas.adiciona(titulo, texto);
-            formulario.reset();
         }
     }
 

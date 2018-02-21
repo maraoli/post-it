@@ -1,10 +1,8 @@
 // Aqui ele seta todos os atributos de uma nota e 
 // cria um Form com ele e retorna.
 
-
 import React from 'react'
 
-// podemos omitir a extensao .js
 import Form from './form';
 import FormInput from './formInput.js';
 import FormTextarea from './formTextarea.js';
@@ -54,43 +52,45 @@ function criaComponenteTextareaTexto(notaAlterada){
     // new way:
     return <FormTextarea {...props} />
     // old way:
-    // return React.createElement(FormTextarea,props)
+    //  return React.createElement(FormTextarea,props)
 }
 
 function criaComponenteBotaoConcluido(adicionarNota, posicao, notaAlterada){
     const props = {
-        key: 'note-addBotao',
         className: 'note__control', 
         type: 'button',
         onClick: event => {
-            adicionarNota(notaAlterada.titulo, notaAlterada.texto, event.target.form, posicao);
-        },
-        onChange: event => notaAlterada.titulo = event.target.value
+            adicionarNota(notaAlterada.titulo, notaAlterada.texto, notaAlterada.posicao)
+            event.target.form.reset()
+        }
     }
     const children = 'Concluído'
-    return React.createElement(FormButton, props, children);
+
+    return <FormButton {...props}>{children}</FormButton>
 }
 
 function criaComponenteBotaoRemover(removerNota, posicao){
     const props = {
-        key: 'note-removeBotao',
         className: 'note__control', 
         type: 'button', 
         // remove children
         onClick: event => {
-            removerNota(event, posicao);
+            event.stopPropagation()
+            removerNota(event, posicao)
         }
     };
 
     // n precisa de crase, filho vem pra cá
 
+    // way 1:
     // const children = <i class="fa fa-times" aria-hidden="true"></i>
-    // OU:
+    // way 2 :
     const children = React.createElement('i', {
         className: 'fa fa-times',
         'aria-hidden': true,
     });
-    return React.createElement('button', props, children); 
+    
+    return <FormButton {...props}>{children}</FormButton> 
 }
 
 // FORMA 1 - DESTRUCTURING
@@ -119,14 +119,14 @@ function FormNotas({notaAtual, posicao, adicionarNota, removerNota, editarFormul
         {/*ou : <Form className="note">*/}
 
             {/*IF EM FORMA DE EXPRESSAO: ULTIMA EXPRESSAO É O Q RETORNA E AS OUTRAS SAO CONDICOES*/}
-            {posicao!== undefined && notaAlterada.editando && buttonRemover}
+            {posicao!== undefined && notaAlterada.editando && botaoRemover}
             {/* ou: {children}*/}
 
             {inputTitulo}
             {textareaTexto}
             
             {/*aparece se cadastro ou edito*/}
-            {(!posicao || notaAlterada.editando) && buttonConcluido}
+            {(!posicao || notaAlterada.editando) && botaoConcluido}
         </Form>
     )
 }

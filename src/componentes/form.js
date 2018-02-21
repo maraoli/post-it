@@ -3,7 +3,7 @@
 
 import React from 'react'
 
-// o filho é passado dentro do props
+// way 1:
 const Form = ({children, ...props}) =>{
     <form {...props}>
           {children}
@@ -11,4 +11,8 @@ const Form = ({children, ...props}) =>{
 }
 
 export default Form
-// standart JS n usa ;
+
+// way 2:
+// export default ({ children, ...props }) => <form {...props}>{children}</form>
+
+// standarde JS n usa ;
