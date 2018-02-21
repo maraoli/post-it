@@ -32,7 +32,7 @@ function montaSectionNotas({listaNotas,adicionarNota,removerNota, editarFormular
         editarFormulario
     }
 
-    return React.createElement(SectionNotas,props)
+    return React.createElement(montaSectionNotas,props)
 }
 
 // render e setState existem em .Componet

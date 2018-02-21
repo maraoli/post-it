@@ -11,36 +11,30 @@ import FormTextarea from './formTextarea.js';
 import FormButton from './formButton.js';
 import Nota from  '../nota';
 
-function criaComponenteInputTitulo(notaAlterada){
+function criaComponenteInputTitulo(notaCopiada){
     const props = {
-        key: 'note-comp',
         className: 'note__title',
         type: 'text',
         name: 'titulo',
         placeholder: 'Título',
-        readOnly: !notaAlterada.editando,
-        defaultValue: notaAlterada.titulo,
-        // exe func quando o valor do input for alterado
-        // receb a tag q sofreu a mudanca
+        readOnly: !notaCopiada.editando,
+        defaultValue: notaCopiada.titulo,
         onChange: (event) => {
-            // notaAtual.titulo  = novoTitulo;
-            // isso acima n pode pq react n muda os parametros recebidos.
-            // target - é a tag q mudo do event recebido
-            notaAlterada.titulo = event.target.value;
+            notaCopiada.titulo = event.target.value;
         }
     }
-    // 20/02
     // tem posicao e não esta editando
-    if(posicao !== undefined && !notaCopiada.editando){
+    if(notaCopiada.posicao !== undefined && !notaCopiada.editando){
         props.readOnly = true
     }
-    return React.creatElement(FormInput, props);
+    // OU if (notaCopiada.estaVisualizando())
+    // função visualisando esta no nota.js
+    return <FormInput {...props} />
 }
 
 // notaCopiada = notaEditada = notaAlterada
 function criaComponenteTextareaTexto(notaAlterada){
     const props ={
-        key: 'note-textArea',
         className: 'note__body', 
         name: 'texto', 
         placeholder: 'Criar uma nota...', 
@@ -53,10 +47,14 @@ function criaComponenteTextareaTexto(notaAlterada){
         }
     }
     // 20/02
-    if(posicao !== undefined && !notaCopiada.editando){
+    // função visualisando esta no nota.js
+    if (notaAlterada.estaVisualizando()){
         props.readOnly = true
     }
-    return React.creatElement(FormTextarea,props)
+    // new way:
+    return <FormTextarea {...props} />
+    // old way:
+    // return React.createElement(FormTextarea,props)
 }
 
 function criaComponenteBotaoConcluido(adicionarNota, posicao, notaAlterada){
@@ -70,7 +68,7 @@ function criaComponenteBotaoConcluido(adicionarNota, posicao, notaAlterada){
         onChange: event => notaAlterada.titulo = event.target.value
     }
     const children = 'Concluído'
-    return React.creatElement(FromButton, props, children);
+    return React.createElement(FormButton, props, children);
 }
 
 function criaComponenteBotaoRemover(removerNota, posicao){
@@ -88,11 +86,11 @@ function criaComponenteBotaoRemover(removerNota, posicao){
 
     // const children = <i class="fa fa-times" aria-hidden="true"></i>
     // OU:
-    const children = React.creatElement('i', {
+    const children = React.createElement('i', {
         className: 'fa fa-times',
         'aria-hidden': true,
     });
-    return React.creatElement('button', props, children); 
+    return React.createElement('button', props, children); 
 }
 
 // FORMA 1 - DESTRUCTURING

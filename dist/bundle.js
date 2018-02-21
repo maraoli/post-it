@@ -587,6 +587,24 @@ var Nota = function () {
     }
 
     _createClass(Nota, [{
+        key: "estaCadastrando",
+
+
+        // 20/02 
+        value: function estaCadastrando() {
+            return this.posicao === undefined;
+        }
+    }, {
+        key: "estaVisualizando",
+        value: function estaVisualizando() {
+            return this.posicao !== undefined && !this.editando;
+        }
+    }, {
+        key: "estaAlterando",
+        value: function estaAlterando() {
+            return this.posicao !== undefined && this.editando;
+        }
+    }, {
         key: "titulo",
         get: function get() {
             return this._titulo;
@@ -1031,29 +1049,24 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 // cria um Form com ele e retorna.
 
 
-function criaComponenteInputTitulo(notaAlterada) {
+function criaComponenteInputTitulo(notaCopiada) {
     var props = {
-        key: 'note-comp',
         className: 'note__title',
         type: 'text',
         name: 'titulo',
         placeholder: 'Título',
-        readOnly: !notaAlterada.editando,
-        defaultValue: notaAlterada.titulo,
-        // exe func quando o valor do input for alterado
-        // receb a tag q sofreu a mudanca
+        readOnly: !notaCopiada.editando,
+        defaultValue: notaCopiada.titulo,
         onChange: function onChange(event) {
-            // notaAtual.titulo  = novoTitulo;
-            // isso acima n pode pq react n muda os parametros recebidos.
-            // target - é a tag q mudo do event recebido
-            notaAlterada.titulo = event.target.value;
+            notaCopiada.titulo = event.target.value;
         }
-        // 20/02
         // tem posicao e não esta editando
-    };if (posicao !== undefined && !notaCopiada.editando) {
+    };if (notaCopiada.posicao !== undefined && !notaCopiada.editando) {
         props.readOnly = true;
     }
-    return _react2.default.creatElement(_formInput2.default, props);
+    // OU if (notaCopiada.estaVisualizando())
+    // função visualisando esta no nota.js
+    return _react2.default.createElement(_formInput2.default, props);
 }
 
 // notaCopiada = notaEditada = notaAlterada
@@ -1062,7 +1075,6 @@ function criaComponenteInputTitulo(notaAlterada) {
 // podemos omitir a extensao .js
 function criaComponenteTextareaTexto(notaAlterada) {
     var props = {
-        key: 'note-textArea',
         className: 'note__body',
         name: 'texto',
         placeholder: 'Criar uma nota...',
@@ -1074,10 +1086,14 @@ function criaComponenteTextareaTexto(notaAlterada) {
             notaAlterada.titulo = event.target.value;
         }
         // 20/02
-    };if (posicao !== undefined && !notaCopiada.editando) {
+        // função visualisando esta no nota.js
+    };if (notaAlterada.estaVisualizando()) {
         props.readOnly = true;
     }
-    return _react2.default.creatElement(_formTextarea2.default, props);
+    // new way:
+    return _react2.default.createElement(_formTextarea2.default, props);
+    // old way:
+    // return React.createElement(FormTextarea,props)
 }
 
 function criaComponenteBotaoConcluido(adicionarNota, posicao, notaAlterada) {
@@ -1093,7 +1109,7 @@ function criaComponenteBotaoConcluido(adicionarNota, posicao, notaAlterada) {
         }
     };
     var children = 'Concluído';
-    return _react2.default.creatElement(FromButton, props, children);
+    return _react2.default.createElement(_formButton2.default, props, children);
 }
 
 function criaComponenteBotaoRemover(removerNota, posicao) {
@@ -1111,11 +1127,11 @@ function criaComponenteBotaoRemover(removerNota, posicao) {
 
     // const children = <i class="fa fa-times" aria-hidden="true"></i>
     // OU:
-    var children = _react2.default.creatElement('i', {
+    var children = _react2.default.createElement('i', {
         className: 'fa fa-times',
         'aria-hidden': true
     });
-    return _react2.default.creatElement('button', props, children);
+    return _react2.default.createElement('button', props, children);
 }
 
 // FORMA 1 - DESTRUCTURING
@@ -18564,7 +18580,7 @@ function montaSectionNotas(_ref2) {
         editarFormulario: editarFormulario
     };
 
-    return _react2.default.createElement(SectionNotas, props);
+    return _react2.default.createElement(montaSectionNotas, props);
 }
 
 // render e setState existem em .Componet
