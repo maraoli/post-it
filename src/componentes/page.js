@@ -96,8 +96,7 @@ class Page extends React.Component {
 
         return (
             <main {...props}>
-                {/*coloque os filhos direto*/}
-                {formNotas}
+                <FormNotas key="form-note"/>
                 {sectionNotas}
             </main>
         );
@@ -105,3 +104,4 @@ class Page extends React.Component {
 }
 
 export default Page
+
