@@ -95,6 +95,8 @@ class Page extends React.Component {
         let sectionNotas = montaSectionNotas(this.state.listaNotas, this.adicionarNota, this.removerNota, this.editarFormulario)
 
         return (
+            <React.Fragment>
+            <img src={srcBackground}/>
             <main {...props}>
                 <FormNotas key="form-note"/>
                 {sectionNotas}
