@@ -1,5 +1,7 @@
 # postit
 
-Esta branch contem a aula do dia 14/02/19 com files da versão 4 e versao 5 juntas.
-Aqui trabalhamos com react pela primeira vez.
-Não está rodando ainda 100%.
+Verão-1---OK
+Essa é uma versão inicial que eu fiz com base na aula.
+
+Ela tá rodando belezinha até onde eu sei.
+
