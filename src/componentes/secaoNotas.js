@@ -25,11 +25,13 @@ function SecaoNotas({listaNotas,adicionarNota,removerNota, editarFormulario}){
         className: 'nova-nota'
     }
 
-    const children = props.listaNotas.pegaTodos().map((notaAtual, posicao) => (
-        montaUmFormNota(posicao, props)
-    ));
-
-    return React.creatElement(Section, props, children);
+    return (
+        <Section {...props}>
+            {listaNotas.pegaTodos().map((notaAtual, posicao) => (
+                montaUmFormNota(posicao, props)
+            ))}
+        </Section>
+    )
 }
 
 export default SecaoNotas;

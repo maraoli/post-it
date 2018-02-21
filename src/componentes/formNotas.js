@@ -123,8 +123,10 @@ function FormNotas({notaAtual, posicao, adicionarNota, removerNota, editarFormul
             {/*IF EM FORMA DE EXPRESSAO: ULTIMA EXPRESSAO É O Q RETORNA E AS OUTRAS SAO CONDICOES*/}
             {posicao!== undefined && notaAlterada.editando && buttonRemover}
             {/* ou: {children}*/}
+
             {inputTitulo}
             {textareaTexto}
+            
             {/*aparece se cadastro ou edito*/}
             {(posicao !== || notaAlterada.editando) && buttonConcluido}
         </Form>

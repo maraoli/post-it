@@ -20,7 +20,9 @@ function montaFormNotas({adicionarNota,removerNota, editarFormulario}){
         removerNota: removerNota,
         editaFormulario: editarFormulario
     }
-    return React.createElement(FormNotas, props)
+    return (
+        <SectionNotas
+    )
 }
 
 function montaSectionNotas(){
@@ -91,9 +93,14 @@ class Page extends React.Component {
 
         let formNotas = montaFormNotas(this.adicionarNota, this.removerNota, this.editarFormulario)
         let sectionNotas = montaSectionNotas(this.state.listaNotas, this.adicionarNota, this.removerNota, this.editarFormulario)
-        const children = [formNotas, sectionNotas]
 
-        return React.createElement('main', props, children)
+        return (
+        <main {...props}>
+            {/*coloque os filhos direto*/}
+            {formNotas}
+            {sectionNotas}
+        </main>
+    )
     }
 }
 
