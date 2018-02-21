@@ -18550,7 +18550,12 @@ function montaFormNotas(_ref) {
     return _react2.default.createElement(_formNotas2.default, props);
 }
 
-function montaSectionNotas() {
+function montaSectionNotas(_ref2) {
+    var listaNotas = _ref2.listaNotas,
+        adicionarNota = _ref2.adicionarNota,
+        removerNota = _ref2.removerNota,
+        editarFormulario = _ref2.editarFormulario;
+
     var props = {
         key: 'section-notes',
         listaNotas: listaNotas,

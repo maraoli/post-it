@@ -23,7 +23,7 @@ function montaFormNotas({adicionarNota,removerNota, editarFormulario}){
     return <FormNotas {...props} />
 }
 
-function montaSectionNotas(){
+function montaSectionNotas({listaNotas,adicionarNota,removerNota, editarFormulario}){
     const props ={
         key:'section-notes',
         listaNotas,
