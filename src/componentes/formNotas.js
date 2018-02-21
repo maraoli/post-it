@@ -107,6 +107,7 @@ function FormNotas({notaAtual, posicao, adicionarNota, removerNota, editarFormul
         className: 'note',
     };
  
+    // new way:
     return (
         <Form {...props}>
         {/*ou : <Form className="note">*/}
@@ -126,5 +127,5 @@ function FormNotas({notaAtual, posicao, adicionarNota, removerNota, editarFormul
         </Form>
     )
 }
-
-export default FormNotas;
+// old way:
+// export default FormNotas;

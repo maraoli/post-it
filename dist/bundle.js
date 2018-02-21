@@ -1015,10 +1015,6 @@ module.exports = focusNode;
 "use strict";
 
 
-Object.defineProperty(exports, "__esModule", {
-    value: true
-});
-
 var _react = __webpack_require__(0);
 
 var _react2 = _interopRequireDefault(_react);
@@ -1158,6 +1154,7 @@ function FormNotas(_ref) {
         className: 'note'
     };
 
+    // new way:
     return _react2.default.createElement(
         _form2.default,
         props,
@@ -1167,8 +1164,8 @@ function FormNotas(_ref) {
         (notaAlterada.estaCadastrando() || notaAlterada.estaAlterando()) && botaoConcluido
     );
 }
-
-exports.default = FormNotas;
+// old way:
+// export default FormNotas;
 
 /***/ }),
 /* 16 */
