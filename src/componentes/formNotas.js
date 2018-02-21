@@ -93,22 +93,15 @@ function criaComponenteBotaoRemover(removerNota, posicao){
     return <FormButton {...props}>{children}</FormButton> 
 }
 
-// FORMA 1 - DESTRUCTURING
 function FormNotas({notaAtual, posicao, adicionarNota, removerNota, editarFormulario}) {
-
-    // FORMA 2 - DESTRUCTURING
-    // const {notaAtual, posicao, adicionarNota, removerNota, editarFormulario} = props;
-
+    
     // é uma copia da nota passada nos parametros pra criar os elementos
     let notaAlterada = new Nota(notaAtual.titulo, notaAtual.texto, notaAtual.editando);
 
     let inputTitulo = criaComponenteInputTitulo(notaAlterada, posicao);
-
     let textareaTexto = criaComponenteTextareaTexto(notaAlterada, posicao);
     let botaoRemover = criaComponenteBotaoRemover(removerNota, posicao);
     let botaoConcluido = criaComponenteBotaoConcluido(adicionarNota, posicao, notaAlterada);
-
-    let formNotas;
 
     let props = {
         className: 'note',
@@ -119,14 +112,17 @@ function FormNotas({notaAtual, posicao, adicionarNota, removerNota, editarFormul
         {/*ou : <Form className="note">*/}
 
             {/*IF EM FORMA DE EXPRESSAO: ULTIMA EXPRESSAO É O Q RETORNA E AS OUTRAS SAO CONDICOES*/}
+            {/* way 1: */}
             {posicao!== undefined && notaAlterada.editando && botaoRemover}
-            {/* ou: {children}*/}
+            {/* way 2: - esta no nota.js */}
+            {/* {notaCopiada.estaAlterando() && botaoRemover} */}
+            {/* way 3?: {children}*/}
 
             {inputTitulo}
             {textareaTexto}
             
-            {/*aparece se cadastro ou edito*/}
-            {(!posicao || notaAlterada.editando) && botaoConcluido}
+            {/*aparece se cadastro ou editando*/}
+            {(notaAlterada.estaCadastrando() || notaAlterada.estaAlterando()) && botaoConcluido}
         </Form>
     )
 }

@@ -1138,7 +1138,6 @@ function criaComponenteBotaoRemover(removerNota, posicao) {
     );
 }
 
-// FORMA 1 - DESTRUCTURING
 function FormNotas(_ref) {
     var notaAtual = _ref.notaAtual,
         posicao = _ref.posicao,
@@ -1147,19 +1146,13 @@ function FormNotas(_ref) {
         editarFormulario = _ref.editarFormulario;
 
 
-    // FORMA 2 - DESTRUCTURING
-    // const {notaAtual, posicao, adicionarNota, removerNota, editarFormulario} = props;
-
     // é uma copia da nota passada nos parametros pra criar os elementos
     var notaAlterada = new _nota2.default(notaAtual.titulo, notaAtual.texto, notaAtual.editando);
 
     var inputTitulo = criaComponenteInputTitulo(notaAlterada, posicao);
-
     var textareaTexto = criaComponenteTextareaTexto(notaAlterada, posicao);
     var botaoRemover = criaComponenteBotaoRemover(removerNota, posicao);
     var botaoConcluido = criaComponenteBotaoConcluido(adicionarNota, posicao, notaAlterada);
-
-    var formNotas = void 0;
 
     var props = {
         className: 'note'
@@ -1171,7 +1164,7 @@ function FormNotas(_ref) {
         posicao !== undefined && notaAlterada.editando && botaoRemover,
         inputTitulo,
         textareaTexto,
-        (!posicao || notaAlterada.editando) && botaoConcluido
+        (notaAlterada.estaCadastrando() || notaAlterada.estaAlterando()) && botaoConcluido
     );
 }
 
