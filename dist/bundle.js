@@ -18678,10 +18678,13 @@ var _react2 = _interopRequireDefault(_react);
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 // o filho é passado dentro do props
-exports.default = function (props) {
+var Form = function Form(props) {
   return _react2.default.creatElement('form', props /*props.children*/);
 }; // Aki ele cria uma tag form com tufo que ela precisa ter,
 // inclusive filhos
+
+exports.default = Form;
+// standart JS n usa ;
 
 /***/ }),
 /* 31 */

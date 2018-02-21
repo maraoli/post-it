@@ -4,4 +4,7 @@
 import React from 'react'
 
 // o filho é passado dentro do props
-export default props => React.creatElement('form', props /*props.children*/)
+const Form = props => React.creatElement('form', props /*props.children*/)
+
+export default Form
+// standart JS n usa ;
