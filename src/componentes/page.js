@@ -1,8 +1,7 @@
-// 16/02/2018
-
 // MAIN
 
 import React from 'react'
+
 import Nota from '../nota'
 import SecaoNotas from './secaoNotas'
 import FormNotas from './formNotas'
@@ -58,7 +57,7 @@ class Page extends React.Component {
     // MODO 1 - Nova função atualiza page
     atualizaPagina(listaNotas){
         console.log('Quem é this?', this);
-        // stado é dados da pagina/componente
+        // state/estado é dados da pagina/componente
         // this é Page
         this.setState({
             listaNotas: novaLista
@@ -86,18 +85,22 @@ class Page extends React.Component {
         this.state.listaNotas.remove(posicao);
     }
     render(){
+        // ?
+        const { state, adicionarNota, removerNota, editarFormulario } = this
+        const { listaNotas } = state
+
         const props = {className: 'container'}
 
         let formNotas = montaFormNotas(this.adicionarNota, this.removerNota, this.editarFormulario)
         let sectionNotas = montaSectionNotas(this.state.listaNotas, this.adicionarNota, this.removerNota, this.editarFormulario)
 
         return (
-        <main {...props}>
-            {/*coloque os filhos direto*/}
-            {formNotas}
-            {sectionNotas}
-        </main>
-    )
+            <main {...props}>
+                {/*coloque os filhos direto*/}
+                {formNotas}
+                {sectionNotas}
+            </main>
+        );
     }
 }
 
