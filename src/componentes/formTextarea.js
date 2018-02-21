@@ -5,7 +5,8 @@ import React from 'react'
 
 // FORMA 1
 function FormTextarea(props){
-    return React.creatElement('textarea', props);
+    <textarea {...props}
+    />
 }
 
 export default FormTextarea;

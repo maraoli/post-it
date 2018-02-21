@@ -115,28 +115,20 @@ function FormNotas({notaAtual, posicao, adicionarNota, removerNota, editarFormul
     let props = {
         className: 'note',
     };
-    let children;
+ 
+    return (
+        <Form {...props}>
+        {/*ou : <Form className="note">*/}
 
-    // 20/02/18
-    if(posicao === undefined){
-        // template de nova nota
-        children = [inputTitulo, textareaTexto, buttonConcluido]
-    }
-    else{
-        // se a nota estiver editando tem os botões
-        if (notaAlterada.editando) {
-            children = [buttonRemover, inputTitulo, textareaTexto, buttonConcluido];
-        } 
-        // se n tiver n tem botoes
-        else {
-            children = [inputTitulo, textareaTexto];
-            // add onClick dentro do props let acima
-            props.onClick = () => {
-                editarFormulario(posicao);
-            }
-        }
-    }   
-    return React.creatElement(Form, formProps, children);
+            {/*IF EM FORMA DE EXPRESSAO: ULTIMA EXPRESSAO É O Q RETORNA E AS OUTRAS SAO CONDICOES*/}
+            {posicao!== undefined && notaAlterada.editando && buttonRemover}
+            {/* ou: {children}*/}
+            {inputTitulo}
+            {textareaTexto}
+            {/*aparece se cadastro ou edito*/}
+            {(posicao !== || notaAlterada.editando) && buttonConcluido}
+        </Form>
+    )
 }
 
 export default FormNotas;

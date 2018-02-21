@@ -11,7 +11,7 @@ import ListaNotas from '../listaNotas'
 // form index.js
 // const listaNotas = new ListaNotas(observaMudancasNaLista);
 
-function montaFormNotas(){
+function montaFormNotas({adicionarNota,removerNota, editarFormulario}){
     const props ={
         key:'form-note',
         posicao: null, 
@@ -20,7 +20,7 @@ function montaFormNotas(){
         removerNota: removerNota,
         editaFormulario: editarFormulario
     }
-    return React.createElement(FromNotas, props)
+    return React.createElement(FormNotas, props)
 }
 
 function montaSectionNotas(){

@@ -1,3 +1,10 @@
 import React from 'react'
 
-export default (props) => React.creactElement('section', props)
+function Sesao (props) => (
+    <section {...props}>
+        {children}
+    </section>
+)
+
+export default Sesao
+
