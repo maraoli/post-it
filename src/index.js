@@ -1,11 +1,9 @@
+// Aqui é o lugar onde utilizamos o 
 import React from 'react'
 import ReactDOM from 'react-dom'
 import Page from './componentes/page'
 
-// componente inserido , elemento DOM inserido ( dom real) 
 ReactDOM.render(
-    // props = null
-    // React.createElement('h1', {className: 'heads'}, 'Olá mundo!'),
     React.createElement(Page, null), 
     document.getElementById('root')
 )
