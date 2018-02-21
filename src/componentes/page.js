@@ -20,9 +20,7 @@ function montaFormNotas({adicionarNota,removerNota, editarFormulario}){
         removerNota: removerNota,
         editaFormulario: editarFormulario
     }
-    return (
-        <SectionNotas
-    )
+    return <FormNotas {...props} />
 }
 
 function montaSectionNotas(){

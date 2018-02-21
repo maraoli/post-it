@@ -128,7 +128,7 @@ function FormNotas({notaAtual, posicao, adicionarNota, removerNota, editarFormul
             {textareaTexto}
             
             {/*aparece se cadastro ou edito*/}
-            {(posicao !== || notaAlterada.editando) && buttonConcluido}
+            {(!posicao || notaAlterada.editando) && buttonConcluido}
         </Form>
     )
 }

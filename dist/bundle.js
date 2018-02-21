@@ -561,7 +561,63 @@ module.exports = warning;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(1)))
 
 /***/ }),
-/* 7 */,
+/* 7 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+var Nota = function () {
+    function Nota(novoTitulo, novoTexto) /*icone = null*/{
+        var novoEditando = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : false;
+
+        _classCallCheck(this, Nota);
+
+        this._titulo = novoTitulo;
+        this._texto = novoTexto;
+        this._editando = novoEditando;
+    }
+
+    _createClass(Nota, [{
+        key: "titulo",
+        get: function get() {
+            return this._titulo;
+        },
+        set: function set(novoTitulo) {
+            this._titulo = novoTitulo;
+        }
+    }, {
+        key: "texto",
+        get: function get() {
+            return this._texto;
+        },
+        set: function set(novoTexto) {
+            this._texto = novoTexto;
+        }
+    }, {
+        key: "editando",
+        get: function get() {
+            return this._editando;
+        },
+        set: function set(novoEditando) {
+            this._editando = novoEditando;
+        }
+    }]);
+
+    return Nota;
+}();
+
+exports.default = Nota;
+
+/***/ }),
 /* 8 */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -935,7 +991,173 @@ function focusNode(node) {
 module.exports = focusNode;
 
 /***/ }),
-/* 15 */,
+/* 15 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+
+var _react = __webpack_require__(0);
+
+var _react2 = _interopRequireDefault(_react);
+
+var _form = __webpack_require__(32);
+
+var _form2 = _interopRequireDefault(_form);
+
+var _formInput = __webpack_require__(33);
+
+var _formInput2 = _interopRequireDefault(_formInput);
+
+var _formTextarea = __webpack_require__(34);
+
+var _formTextarea2 = _interopRequireDefault(_formTextarea);
+
+var _formButton = __webpack_require__(35);
+
+var _formButton2 = _interopRequireDefault(_formButton);
+
+var _nota = __webpack_require__(7);
+
+var _nota2 = _interopRequireDefault(_nota);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+// Aqui ele seta todos os atributos de uma nota e 
+// cria um Form com ele e retorna.
+
+
+function criaComponenteInputTitulo(notaAlterada) {
+    var props = {
+        key: 'note-comp',
+        className: 'note__title',
+        type: 'text',
+        name: 'titulo',
+        placeholder: 'Título',
+        readOnly: !notaAlterada.editando,
+        defaultValue: notaAlterada.titulo,
+        // exe func quando o valor do input for alterado
+        // receb a tag q sofreu a mudanca
+        onChange: function onChange(event) {
+            // notaAtual.titulo  = novoTitulo;
+            // isso acima n pode pq react n muda os parametros recebidos.
+            // target - é a tag q mudo do event recebido
+            notaAlterada.titulo = event.target.value;
+        }
+        // 20/02
+        // tem posicao e não esta editando
+    };if (posicao !== undefined && !notaCopiada.editando) {
+        props.readOnly = true;
+    }
+    return _react2.default.creatElement(_formInput2.default, props);
+}
+
+// notaCopiada = notaEditada = notaAlterada
+
+
+// podemos omitir a extensao .js
+function criaComponenteTextareaTexto(notaAlterada) {
+    var props = {
+        key: 'note-textArea',
+        className: 'note__body',
+        name: 'texto',
+        placeholder: 'Criar uma nota...',
+        rows: 5,
+        readOnly: !notaAlterada.editando,
+        // children viro value que vira defaultValue
+        defaulValue: notaAlterada.texto,
+        onChange: function onChange(event) {
+            notaAlterada.titulo = event.target.value;
+        }
+        // 20/02
+    };if (posicao !== undefined && !notaCopiada.editando) {
+        props.readOnly = true;
+    }
+    return _react2.default.creatElement(_formTextarea2.default, props);
+}
+
+function criaComponenteBotaoConcluido(adicionarNota, posicao, notaAlterada) {
+    var props = {
+        key: 'note-addBotao',
+        className: 'note__control',
+        type: 'button',
+        onClick: function onClick(event) {
+            adicionarNota(notaAlterada.titulo, notaAlterada.texto, event.target.form, posicao);
+        },
+        onChange: function onChange(event) {
+            return notaAlterada.titulo = event.target.value;
+        }
+    };
+    var children = 'Concluído';
+    return _react2.default.creatElement(FromButton, props, children);
+}
+
+function criaComponenteBotaoRemover(removerNota, posicao) {
+    var props = {
+        key: 'note-removeBotao',
+        className: 'note__control',
+        type: 'button',
+        // remove children
+        onClick: function onClick(event) {
+            removerNota(event, posicao);
+        }
+    };
+
+    // n precisa de crase, filho vem pra cá
+
+    // const children = <i class="fa fa-times" aria-hidden="true"></i>
+    // OU:
+    var children = _react2.default.creatElement('i', {
+        className: 'fa fa-times',
+        'aria-hidden': true
+    });
+    return _react2.default.creatElement('button', props, children);
+}
+
+// FORMA 1 - DESTRUCTURING
+function FormNotas(_ref) {
+    var notaAtual = _ref.notaAtual,
+        posicao = _ref.posicao,
+        adicionarNota = _ref.adicionarNota,
+        removerNota = _ref.removerNota,
+        editarFormulario = _ref.editarFormulario;
+
+
+    // FORMA 2 - DESTRUCTURING
+    // const {notaAtual, posicao, adicionarNota, removerNota, editarFormulario} = props;
+
+    // é uma copia da nota passada nos parametros pra criar os elementos
+    var notaAlterada = new _nota2.default(notaAtual.titulo, notaAtual.texto, notaAtual.editando);
+
+    var inputTitulo = criaComponenteInputTitulo(notaAlterada, posicao);
+
+    var textareaTexto = criaComponenteTextareaTexto(notaAlterada, posicao);
+    var botaoRemover = criaComponenteBotaoRemover(removerNota, posicao);
+    var botaoConcluido = criaComponenteBotaoConcluido(adicionarNota, posicao, notaAlterada);
+
+    var formNotas = void 0;
+
+    var props = {
+        className: 'note'
+    };
+
+    return _react2.default.createElement(
+        _form2.default,
+        props,
+        posicao !== undefined && notaAlterada.editando && buttonRemover,
+        inputTitulo,
+        textareaTexto,
+        (!posicao || notaAlterada.editando) && buttonConcluido
+    );
+}
+
+exports.default = FormNotas;
+
+/***/ }),
 /* 16 */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -956,11 +1178,7 @@ var _page2 = _interopRequireDefault(_page);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-// componente inserido , elemento DOM inserido ( dom real) 
-_reactDom2.default.render(
-// props = null
-// React.createElement('h1', {className: 'heads'}, 'Olá mundo!'),
-_react2.default.createElement(_page2.default, null), document.getElementById('root'));
+_reactDom2.default.render(_react2.default.createElement(_page2.default, null), document.getElementById('root')); // Aqui é o lugar onde utilizamos o
 
 /***/ }),
 /* 17 */
@@ -18272,10 +18490,472 @@ module.exports = camelize;
 
 /***/ }),
 /* 29 */
-/***/ (function(module, exports) {
+/***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-throw new Error("Module build failed: SyntaxError: E:/1) FILES/WebAula/Together/Aulas/2018/02-14-2018/post-it/src/componentes/page.js: Unexpected token (25:4)\n\n\u001b[0m \u001b[90m 23 | \u001b[39m    \u001b[36mreturn\u001b[39m (\n \u001b[90m 24 | \u001b[39m        \u001b[33m<\u001b[39m\u001b[33mSectionNotas\u001b[39m\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 25 | \u001b[39m    )\n \u001b[90m    | \u001b[39m    \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 26 | \u001b[39m}\n \u001b[90m 27 | \u001b[39m\n \u001b[90m 28 | \u001b[39m\u001b[36mfunction\u001b[39m montaSectionNotas(){\u001b[0m\n");
+
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _react = __webpack_require__(0);
+
+var _react2 = _interopRequireDefault(_react);
+
+var _nota = __webpack_require__(7);
+
+var _nota2 = _interopRequireDefault(_nota);
+
+var _secaoNotas = __webpack_require__(30);
+
+var _secaoNotas2 = _interopRequireDefault(_secaoNotas);
+
+var _formNotas = __webpack_require__(15);
+
+var _formNotas2 = _interopRequireDefault(_formNotas);
+
+var _listaNotas = __webpack_require__(36);
+
+var _listaNotas2 = _interopRequireDefault(_listaNotas);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; } // 16/02/2018
+
+// MAIN
+
+// form index.js
+// const listaNotas = new ListaNotas(observaMudancasNaLista);
+
+function montaFormNotas(_ref) {
+    var adicionarNota = _ref.adicionarNota,
+        removerNota = _ref.removerNota,
+        editarFormulario = _ref.editarFormulario;
+
+    var props = {
+        key: 'form-note',
+        posicao: null,
+        notaAtual: new _nota2.default('', ''),
+        adicionarNota: adicionarNota,
+        removerNota: removerNota,
+        editaFormulario: editarFormulario
+    };
+    return _react2.default.createElement(_formNotas2.default, props);
+}
+
+function montaSectionNotas() {
+    var props = {
+        key: 'section-notes',
+        listaNotas: listaNotas,
+        adicionarNota: adicionarNota,
+        removerNota: removerNota,
+        editarFormulario: editarFormulario
+    };
+
+    return _react2.default.createElement(SectionNotas, props);
+}
+
+// render e setState existem em .Componet
+
+var Page = function (_React$Component) {
+    _inherits(Page, _React$Component);
+
+    function Page(props) {
+        _classCallCheck(this, Page);
+
+        // 20/02
+        // bind - função que: vide baixo
+        // this sempre se refera a pag clas Page, esse this abaixo represente o class Page
+        // render n precisa pq ele n e passado para componentes filhos
+        var _this = _possibleConstructorReturn(this, (Page.__proto__ || Object.getPrototypeOf(Page)).call(this, props));
+        // chama classe pai
+
+
+        _this.adicionarNota = _this.adicionarNota.bind(_this);
+        _this.removerNota = _this.removerNota.bind(_this);
+        _this.editarFormulario = _this.editarFormulario.bind(_this);
+        _this.atualizaPagina = _this.atualizaPagina.bind(_this);
+
+        _this.state = {
+            listaNotas: new _listaNotas2.default(_this.atualizaPagina)
+        };
+        return _this;
+    }
+
+    // MODO 1 - Nova função atualiza page
+
+
+    _createClass(Page, [{
+        key: 'atualizaPagina',
+        value: function atualizaPagina(listaNotas) {
+            console.log('Quem é this?', this);
+            // stado é dados da pagina/componente
+            // this é Page
+            this.setState({
+                listaNotas: novaLista
+            });
+        }
+
+        // sessao notas e montaFromNotas usam essas 3 funcoes por isso deixamos fora
+        // recortei as 3 do index
+
+    }, {
+        key: 'editarFormulario',
+        value: function editarFormulario(posicao) {
+            this.state.listaNotas.edita(posicao);
+        }
+
+        // 20/02
+
+    }, {
+        key: 'adicionarNota',
+        value: function adicionarNota(titulo, texto, formulario, posicao) {
+            if (this.state.listaNotas.pega(posicao)) {
+                this.state.listaNotas.salva(posicao, titulo, texto);
+            } else {
+                this.state.listaNotas.adiciona(titulo, texto);
+                formulario.reset();
+            }
+        }
+    }, {
+        key: 'removerNota',
+        value: function removerNota(evento, posicao) {
+            evento.stopPropagation();
+            this.state.listaNotas.remove(posicao);
+        }
+    }, {
+        key: 'render',
+        value: function render() {
+            var props = { className: 'container' };
+
+            var formNotas = montaFormNotas(this.adicionarNota, this.removerNota, this.editarFormulario);
+            var sectionNotas = montaSectionNotas(this.state.listaNotas, this.adicionarNota, this.removerNota, this.editarFormulario);
+
+            return _react2.default.createElement(
+                'main',
+                props,
+                formNotas,
+                sectionNotas
+            );
+        }
+    }]);
+
+    return Page;
+}(_react2.default.Component);
+
+exports.default = Page;
+
+/***/ }),
+/* 30 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+
+var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; // DESAFIO 15/02/18
+
+
+var _react = __webpack_require__(0);
+
+var _react2 = _interopRequireDefault(_react);
+
+var _section = __webpack_require__(31);
+
+var _section2 = _interopRequireDefault(_section);
+
+var _formNotas = __webpack_require__(15);
+
+var _formNotas2 = _interopRequireDefault(_formNotas);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+// sabe da lista de notas - props
+// cada item tem um for, filho cria form notas, insere no children fa função,
+// retorna o elemento react
+
+function montaUmFormNotas(posicao, notaAtual, adicionarNota, removerNota, editarFormulario) {
+    var props = {
+        key: posicao,
+        notaAtual: notaAtual,
+        removerNota: removerNota,
+        adicionarNota: adicionarNota,
+        editarFormulario: editarFormulario
+    };
+
+    return _react2.default.createElement(_formNotas2.default, _extends({ key: posicao }, props));
+}
+
+function SecaoNotas(_ref) {
+    var listaNotas = _ref.listaNotas,
+        adicionarNota = _ref.adicionarNota,
+        removerNota = _ref.removerNota,
+        editarFormulario = _ref.editarFormulario;
+
+    var props = {
+        className: 'nova-nota'
+    };
+
+    return _react2.default.createElement(
+        _section2.default,
+        props,
+        listaNotas.pegaTodos().map(function (notaAtual, posicao) {
+            return montaUmFormNota(posicao, props);
+        })
+    );
+}
+
+exports.default = SecaoNotas;
+
+/***/ }),
+/* 31 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+
+var _react = __webpack_require__(0);
+
+var _react2 = _interopRequireDefault(_react);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var Sesao = function Sesao(props) {
+    _react2.default.createElement('section', props);
+};
+
+exports.default = Sesao;
+
+/***/ }),
+/* 32 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+
+var _react = __webpack_require__(0);
+
+var _react2 = _interopRequireDefault(_react);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _objectWithoutProperties(obj, keys) { var target = {}; for (var i in obj) { if (keys.indexOf(i) >= 0) continue; if (!Object.prototype.hasOwnProperty.call(obj, i)) continue; target[i] = obj[i]; } return target; } // Aki ele cria uma tag form com tufo que ela precisa ter,
+// inclusive filhos
+
+// o filho é passado dentro do props
+var Form = function Form(_ref) {
+    var children = _ref.children,
+        props = _objectWithoutProperties(_ref, ['children']);
+
+    _react2.default.createElement(
+        'form',
+        props,
+        children
+    );
+};
+
+exports.default = Form;
+// standart JS n usa ;
+
+/***/ }),
+/* 33 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+
+var _react = __webpack_require__(0);
+
+var _react2 = _interopRequireDefault(_react);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+// FORMA 1 - menos melhor
+// essa n tem childen
+function FormInput(props) {
+    // 20/02
+    /*
+    SEM SPREAD
+    {<input  className={props.className}
+            
+            type={props.type}
+            name={props.name}
+            placeholder={props.placeholder}
+            defaultValue={props.defaultValue}
+            onChange={props.defaultValue}
+    />}*/
+
+    // COM SPREAD
+    _react2.default.createElement('input', props);
+} // Aki ele cria tudo que um input precisa ter.
+
+exports.default = FormInput;
+
+/***/ }),
+/* 34 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+
+var _react = __webpack_require__(0);
+
+var _react2 = _interopRequireDefault(_react);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+// FORMA 1
+function FormTextarea(props) {
+    _react2.default.createElement('textarea', props);
+} // Aki ele cria um textarea e com tudo q precisa
+// code in the dark - competition
+
+exports.default = FormTextarea;
+
+/***/ }),
+/* 35 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+
+var _react = __webpack_require__(0);
+
+var _react2 = _interopRequireDefault(_react);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function FormButton(children) {
+    for (var _len = arguments.length, props = Array(_len > 1 ? _len - 1 : 0), _key = 1; _key < _len; _key++) {
+        props[_key - 1] = arguments[_key];
+    }
+
+    _react2.default.createElement(
+        'button',
+        props,
+        children
+    );
+} // Cria um button com tudo que ele precisa e returna
+
+exports.default = FormButton;
+
+/***/ }),
+/* 36 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }(); // Aqui contem as funções que uma "lista de notas" deve ter e a 
+// inicialização de uma lista de notas (constructor)
+
+var _nota = __webpack_require__(7);
+
+var _nota2 = _interopRequireDefault(_nota);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+var ListaNotas = function () {
+    function ListaNotas(observador) {
+        _classCallCheck(this, ListaNotas);
+
+        this._listaInterna = [];
+        this._observador = observador;
+    }
+
+    // aki a nota n existe.
+
+
+    _createClass(ListaNotas, [{
+        key: 'adiciona',
+        value: function adiciona(novoTitulo, novoTexto) {
+            var nota = new _nota2.default(novoTitulo, novoTexto);
+            this._listaInterna.push(nota);
+            // pq ela espera receber a lista, que é o this aki.
+            this._observador(this);
+        }
+    }, {
+        key: 'remove',
+        value: function remove(posicao, quantidade) {
+            this._listaInterna.splice(posicao, 1);
+            this._observador(this);
+        }
+    }, {
+        key: 'edita',
+        value: function edita(posicao) {
+            this._listaInterna[posicao].editando = true;
+            this._observador(this);
+        }
+
+        // dif do add - aki a nota já existe
+
+    }, {
+        key: 'salva',
+        value: function salva(posicao, novoTitulo, novoTexto) {
+            this._listaInterna[posicao].titulo = novoTitulo;
+            this._listaInterna[posicao].texto = novoTexto;
+            this._listaInterna[posicao].editando = false;
+            this._observador(this);
+        }
+    }, {
+        key: 'pega',
+        value: function pega(posicao) {
+            return this._listaInterna[posicao];
+        }
+    }, {
+        key: 'pegaTodos',
+        value: function pegaTodos() {
+            return this._listaInterna;
+        }
+    }, {
+        key: 'contaTotal',
+        value: function contaTotal() {
+            return this._listaInterna.length;
+        }
+    }]);
+
+    return ListaNotas;
+}();
+
+;
+
+exports.default = ListaNotas;
 
 /***/ })
 /******/ ]);

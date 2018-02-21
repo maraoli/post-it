@@ -1,10 +1,8 @@
 import React from 'react'
 
-function Sesao (props) => (
-    <section {...props}>
-        {children}
-    </section>
-)
+const Sesao = props => {
+    <section {...props}/>
+}
 
 export default Sesao
 
