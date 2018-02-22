@@ -4,11 +4,12 @@
 import React from 'react'
 
 // way 1:
-const Form = ({children, ...props}) =>{
+const Form = ({children, ...props}) =>(
     <form {...props}>
           {children}
     </form>
-}
+)
+
 
 export default Form
 

@@ -98,7 +98,7 @@ class Page extends React.Component {
             <React.Fragment>
             <img src={srcBackground}/>
             <main {...props}>
-                <FormNotas key="form-note"/>
+                <FormNotas key="form-note"><FormNotas/>
                 {sectionNotas}
             </main>
         );
