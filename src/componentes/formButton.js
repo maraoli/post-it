@@ -1,4 +1,4 @@
-// Cria um button com tudo que ele precisa e returna
+// Cria um button com tudo que ele precisa e retorna
 
 import React from 'react'
 

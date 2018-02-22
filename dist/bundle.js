@@ -18887,7 +18887,7 @@ var FormButton = function FormButton(children) {
         props,
         children
     );
-}; // Cria um button com tudo que ele precisa e returna
+}; // Cria um button com tudo que ele precisa e retorna
 
 exports.default = FormButton;
 
