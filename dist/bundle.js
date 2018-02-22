@@ -1077,7 +1077,7 @@ function criaComponenteTextareaTexto(notaAlterada) {
         rows: 5,
         readOnly: !notaAlterada.editando,
         // children viro value que vira defaultValue
-        defaulValue: notaAlterada.texto,
+        defaultValue: notaAlterada.texto,
         onChange: function onChange(event) {
             notaAlterada.titulo = event.target.value;
         }
@@ -18825,22 +18825,9 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 
 // FORMA 1 - menos melhor
 // essa n tem childen
-function FormInput(props) {
-    // 20/02
-    /*
-    SEM SPREAD
-    {<input  className={props.className}
-            
-            type={props.type}
-            name={props.name}
-            placeholder={props.placeholder}
-            defaultValue={props.defaultValue}
-            onChange={props.defaultValue}
-    />}*/
-
-    // COM SPREAD
-    _react2.default.createElement('input', props);
-} // Aki ele cria tudo que um input precisa ter.
+var FormInput = function FormInput(props) {
+    return _react2.default.createElement('input', props);
+}; // Aki ele cria tudo que um input precisa ter.
 
 exports.default = FormInput;
 
@@ -18862,12 +18849,15 @@ var _react2 = _interopRequireDefault(_react);
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 // FORMA 1
-function FormTextarea(props) {
-    _react2.default.createElement('textarea', props);
-} // Aki ele cria um textarea e com tudo q precisa
+var FormTextarea = function FormTextarea(props) {
+    return _react2.default.createElement('textarea', props);
+}; // Aki ele cria um textarea e com tudo q precisa
 // code in the dark - competition
 
 exports.default = FormTextarea;
+
+// FORMA 2:
+// export default props => <textarea {...props} />
 
 /***/ }),
 /* 35 */
@@ -18886,17 +18876,17 @@ var _react2 = _interopRequireDefault(_react);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-function FormButton(children) {
+var FormButton = function FormButton(children) {
     for (var _len = arguments.length, props = Array(_len > 1 ? _len - 1 : 0), _key = 1; _key < _len; _key++) {
         props[_key - 1] = arguments[_key];
     }
 
-    _react2.default.createElement(
+    return _react2.default.createElement(
         'button',
         props,
         children
     );
-} // Cria um button com tudo que ele precisa e returna
+}; // Cria um button com tudo que ele precisa e returna
 
 exports.default = FormButton;
 

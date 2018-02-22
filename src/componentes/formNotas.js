@@ -39,7 +39,7 @@ function criaComponenteTextareaTexto(notaAlterada){
         rows: 5, 
         readOnly: !notaAlterada.editando,
         // children viro value que vira defaultValue
-        defaulValue: notaAlterada.texto,
+        defaultValue: notaAlterada.texto,
         onChange: (event)=>{
             notaAlterada.titulo = event.target.value;
         }

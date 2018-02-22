@@ -4,9 +4,12 @@
 import React from 'react'
 
 // FORMA 1
-function FormTextarea(props){
+const FormTextarea = (props) => (
     <textarea {...props}
     />
-}
+)
 
 export default FormTextarea;
+
+// FORMA 2:
+// export default props => <textarea {...props} />

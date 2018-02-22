@@ -2,11 +2,10 @@
 
 import React from 'react'
 
-
-function FormButton(children, ...props) {
+const FormButton = (children, ...props) =>(
     <button {...props}>
         {children}
     </button>
-}
+)
 
 export default FormButton;
