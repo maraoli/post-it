@@ -60,11 +60,26 @@
 /******/ 	__webpack_require__.p = "";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 14);
+/******/ 	return __webpack_require__(__webpack_require__.s = 16);
 /******/ })
 /************************************************************************/
 /******/ ([
 /* 0 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+/* WEBPACK VAR INJECTION */(function(process) {
+
+if (process.env.NODE_ENV === 'production') {
+  module.exports = __webpack_require__(17);
+} else {
+  module.exports = __webpack_require__(18);
+}
+
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(1)))
+
+/***/ }),
+/* 1 */
 /***/ (function(module, exports) {
 
 // shim for using process in browser
@@ -254,7 +269,7 @@ process.umask = function() { return 0; };
 
 
 /***/ }),
-/* 1 */
+/* 2 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -294,21 +309,6 @@ emptyFunction.thatReturnsArgument = function (arg) {
 };
 
 module.exports = emptyFunction;
-
-/***/ }),
-/* 2 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-/* WEBPACK VAR INJECTION */(function(process) {
-
-if (process.env.NODE_ENV === 'production') {
-  module.exports = __webpack_require__(15);
-} else {
-  module.exports = __webpack_require__(16);
-}
-
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
 /* 3 */
@@ -429,7 +429,7 @@ if (process.env.NODE_ENV !== 'production') {
 }
 
 module.exports = emptyObject;
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(1)))
 
 /***/ }),
 /* 5 */
@@ -489,7 +489,7 @@ function invariant(condition, format, a, b, c, d, e, f) {
 }
 
 module.exports = invariant;
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(1)))
 
 /***/ }),
 /* 6 */
@@ -506,7 +506,7 @@ module.exports = invariant;
 
 
 
-var emptyFunction = __webpack_require__(1);
+var emptyFunction = __webpack_require__(2);
 
 /**
  * Similar to invariant but only logs a warning if the condition is not met.
@@ -558,10 +558,85 @@ if (process.env.NODE_ENV !== 'production') {
 }
 
 module.exports = warning;
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(1)))
 
 /***/ }),
 /* 7 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+var Nota = function () {
+    function Nota(novoTitulo, novoTexto) /*icone = null*/{
+        var novoEditando = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : false;
+
+        _classCallCheck(this, Nota);
+
+        this._titulo = novoTitulo;
+        this._texto = novoTexto;
+        this._editando = novoEditando;
+    }
+
+    _createClass(Nota, [{
+        key: "estaCadastrando",
+
+
+        // 20/02 
+        value: function estaCadastrando() {
+            return this.posicao === undefined;
+        }
+    }, {
+        key: "estaVisualizando",
+        value: function estaVisualizando() {
+            return this.posicao !== undefined && !this.editando;
+        }
+    }, {
+        key: "estaAlterando",
+        value: function estaAlterando() {
+            return this.posicao !== undefined && this.editando;
+        }
+    }, {
+        key: "titulo",
+        get: function get() {
+            return this._titulo;
+        },
+        set: function set(novoTitulo) {
+            this._titulo = novoTitulo;
+        }
+    }, {
+        key: "texto",
+        get: function get() {
+            return this._texto;
+        },
+        set: function set(novoTexto) {
+            this._texto = novoTexto;
+        }
+    }, {
+        key: "editando",
+        get: function get() {
+            return this._editando;
+        },
+        set: function set(novoEditando) {
+            this._editando = novoEditando;
+        }
+    }]);
+
+    return Nota;
+}();
+
+exports.default = Nota;
+
+/***/ }),
+/* 8 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -577,7 +652,7 @@ module.exports = warning;
 if (process.env.NODE_ENV !== 'production') {
   var invariant = __webpack_require__(5);
   var warning = __webpack_require__(6);
-  var ReactPropTypesSecret = __webpack_require__(17);
+  var ReactPropTypesSecret = __webpack_require__(19);
   var loggedTypeFailures = {};
 }
 
@@ -625,10 +700,10 @@ function checkPropTypes(typeSpecs, values, location, componentName, getStack) {
 
 module.exports = checkPropTypes;
 
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(1)))
 
 /***/ }),
-/* 8 */
+/* 9 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -667,7 +742,7 @@ var ExecutionEnvironment = {
 module.exports = ExecutionEnvironment;
 
 /***/ }),
-/* 9 */
+/* 10 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -682,7 +757,7 @@ module.exports = ExecutionEnvironment;
  * @typechecks
  */
 
-var emptyFunction = __webpack_require__(1);
+var emptyFunction = __webpack_require__(2);
 
 /**
  * Upstream version of event listener. Does not take into account specific
@@ -745,10 +820,10 @@ var EventListener = {
 };
 
 module.exports = EventListener;
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(1)))
 
 /***/ }),
-/* 10 */
+/* 11 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -790,7 +865,7 @@ function getActiveElement(doc) /*?DOMElement*/{
 module.exports = getActiveElement;
 
 /***/ }),
-/* 11 */
+/* 12 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -861,7 +936,7 @@ function shallowEqual(objA, objB) {
 module.exports = shallowEqual;
 
 /***/ }),
-/* 12 */
+/* 13 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -876,7 +951,7 @@ module.exports = shallowEqual;
  * 
  */
 
-var isTextNode = __webpack_require__(20);
+var isTextNode = __webpack_require__(22);
 
 /*eslint-disable no-bitwise */
 
@@ -904,7 +979,7 @@ function containsNode(outerNode, innerNode) {
 module.exports = containsNode;
 
 /***/ }),
-/* 13 */
+/* 14 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -934,21 +1009,183 @@ function focusNode(node) {
 module.exports = focusNode;
 
 /***/ }),
-/* 14 */
+/* 15 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
-var _react = __webpack_require__(2);
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+
+var _react = __webpack_require__(0);
 
 var _react2 = _interopRequireDefault(_react);
 
-var _reactDom = __webpack_require__(18);
+var _form = __webpack_require__(32);
+
+var _form2 = _interopRequireDefault(_form);
+
+var _formInput = __webpack_require__(33);
+
+var _formInput2 = _interopRequireDefault(_formInput);
+
+var _formTextarea = __webpack_require__(34);
+
+var _formTextarea2 = _interopRequireDefault(_formTextarea);
+
+var _formButton = __webpack_require__(35);
+
+var _formButton2 = _interopRequireDefault(_formButton);
+
+var _nota = __webpack_require__(7);
+
+var _nota2 = _interopRequireDefault(_nota);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+// Aqui ele seta todos os atributos de uma nota e 
+// cria um Form com ele e retorna.
+
+function criaComponenteInputTitulo(notaCopiada) {
+    var props = {
+        className: 'note__title',
+        type: 'text',
+        name: 'titulo',
+        placeholder: 'Título',
+        readOnly: !notaCopiada.editando,
+        defaultValue: notaCopiada.titulo,
+        onChange: function onChange(event) {
+            notaCopiada.titulo = event.target.value;
+        }
+        // tem posicao e não esta editando
+    };if (notaCopiada.posicao !== undefined && !notaCopiada.editando) {
+        props.readOnly = true;
+    }
+    // OU if (notaCopiada.estaVisualizando())
+    // função visualisando esta no nota.js
+    return _react2.default.createElement(_formInput2.default, props);
+}
+
+// notaCopiada = notaEditada = notaAlterada
+function criaComponenteTextareaTexto(notaAlterada) {
+    var props = {
+        className: 'note__body',
+        name: 'texto',
+        placeholder: 'Criar uma nota...',
+        rows: 5,
+        readOnly: !notaAlterada.editando,
+        // children viro value que vira defaultValue
+        defaulValue: notaAlterada.texto,
+        onChange: function onChange(event) {
+            notaAlterada.titulo = event.target.value;
+        }
+        // 20/02
+        // função visualisando esta no nota.js
+    };if (notaAlterada.estaVisualizando()) {
+        props.readOnly = true;
+    }
+    // new way:
+    return _react2.default.createElement(_formTextarea2.default, props);
+    // old way:
+    //  return React.createElement(FormTextarea,props)
+}
+
+function criaComponenteBotaoConcluido(adicionarNota, posicao, notaAlterada) {
+    var props = {
+        className: 'note__control',
+        type: 'button',
+        onClick: function onClick(event) {
+            adicionarNota(notaAlterada.titulo, notaAlterada.texto, notaAlterada.posicao);
+            event.target.form.reset();
+        }
+    };
+    var children = 'Concluído';
+
+    return _react2.default.createElement(
+        _formButton2.default,
+        props,
+        children
+    );
+}
+
+function criaComponenteBotaoRemover(removerNota, posicao) {
+    var props = {
+        className: 'note__control',
+        type: 'button',
+        // remove children
+        onClick: function onClick(event) {
+            event.stopPropagation();
+            removerNota(event, posicao);
+        }
+    };
+
+    // n precisa de crase, filho vem pra cá
+
+    // way 1:
+    // const children = <i class="fa fa-times" aria-hidden="true"></i>
+    // way 2 :
+    var children = _react2.default.createElement('i', {
+        className: 'fa fa-times',
+        'aria-hidden': true
+    });
+
+    return _react2.default.createElement(
+        _formButton2.default,
+        props,
+        children
+    );
+}
+
+function FormNotas(_ref) {
+    var notaAtual = _ref.notaAtual,
+        posicao = _ref.posicao,
+        adicionarNota = _ref.adicionarNota,
+        removerNota = _ref.removerNota,
+        editarFormulario = _ref.editarFormulario;
+
+
+    // é uma copia da nota passada nos parametros pra criar os elementos
+    var notaAlterada = new _nota2.default(notaAtual.titulo, notaAtual.texto, notaAtual.editando);
+
+    var inputTitulo = criaComponenteInputTitulo(notaAlterada, posicao);
+    var textareaTexto = criaComponenteTextareaTexto(notaAlterada, posicao);
+    var botaoRemover = criaComponenteBotaoRemover(removerNota, posicao);
+    var botaoConcluido = criaComponenteBotaoConcluido(adicionarNota, posicao, notaAlterada);
+
+    var props = {
+        className: 'note'
+    };
+
+    return _react2.default.createElement(
+        _form2.default,
+        props,
+        posicao !== undefined && notaAlterada.editando && botaoRemover,
+        inputTitulo,
+        textareaTexto,
+        (notaAlterada.estaCadastrando() || notaAlterada.estaAlterando()) && botaoConcluido
+    );
+}
+
+exports.default = FormNotas;
+
+/***/ }),
+/* 16 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var _react = __webpack_require__(0);
+
+var _react2 = _interopRequireDefault(_react);
+
+var _reactDom = __webpack_require__(20);
 
 var _reactDom2 = _interopRequireDefault(_reactDom);
 
-var _page = __webpack_require__(27);
+var _page = __webpack_require__(29);
 
 var _page2 = _interopRequireDefault(_page);
 
@@ -957,7 +1194,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 _reactDom2.default.render(_react2.default.createElement(_page2.default, null), document.getElementById('root')); // Aqui é o lugar onde utilizamos o
 
 /***/ }),
-/* 15 */
+/* 17 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -970,7 +1207,7 @@ _reactDom2.default.render(_react2.default.createElement(_page2.default, null), d
  * LICENSE file in the root directory of this source tree.
  */
 
-var m=__webpack_require__(3),n=__webpack_require__(4),p=__webpack_require__(1),q="function"===typeof Symbol&&Symbol["for"],r=q?Symbol["for"]("react.element"):60103,t=q?Symbol["for"]("react.call"):60104,u=q?Symbol["for"]("react.return"):60105,v=q?Symbol["for"]("react.portal"):60106,w=q?Symbol["for"]("react.fragment"):60107,x="function"===typeof Symbol&&Symbol.iterator;
+var m=__webpack_require__(3),n=__webpack_require__(4),p=__webpack_require__(2),q="function"===typeof Symbol&&Symbol["for"],r=q?Symbol["for"]("react.element"):60103,t=q?Symbol["for"]("react.call"):60104,u=q?Symbol["for"]("react.return"):60105,v=q?Symbol["for"]("react.portal"):60106,w=q?Symbol["for"]("react.fragment"):60107,x="function"===typeof Symbol&&Symbol.iterator;
 function y(a){for(var b=arguments.length-1,e="Minified React error #"+a+"; visit http://facebook.github.io/react/docs/error-decoder.html?invariant\x3d"+a,c=0;c<b;c++)e+="\x26args[]\x3d"+encodeURIComponent(arguments[c+1]);b=Error(e+" for the full message or use the non-minified dev environment for full errors and additional helpful warnings.");b.name="Invariant Violation";b.framesToPop=1;throw b;}
 var z={isMounted:function(){return!1},enqueueForceUpdate:function(){},enqueueReplaceState:function(){},enqueueSetState:function(){}};function A(a,b,e){this.props=a;this.context=b;this.refs=n;this.updater=e||z}A.prototype.isReactComponent={};A.prototype.setState=function(a,b){"object"!==typeof a&&"function"!==typeof a&&null!=a?y("85"):void 0;this.updater.enqueueSetState(this,a,b,"setState")};A.prototype.forceUpdate=function(a){this.updater.enqueueForceUpdate(this,a,"forceUpdate")};
 function B(a,b,e){this.props=a;this.context=b;this.refs=n;this.updater=e||z}function C(){}C.prototype=A.prototype;var D=B.prototype=new C;D.constructor=B;m(D,A.prototype);D.isPureReactComponent=!0;function E(a,b,e){this.props=a;this.context=b;this.refs=n;this.updater=e||z}var F=E.prototype=new C;F.constructor=E;m(F,A.prototype);F.unstable_isAsyncReactComponent=!0;F.render=function(){return this.props.children};var G={current:null},H=Object.prototype.hasOwnProperty,I={key:!0,ref:!0,__self:!0,__source:!0};
@@ -985,7 +1222,7 @@ isValidElement:K,version:"16.2.0",__SECRET_INTERNALS_DO_NOT_USE_OR_YOU_WILL_BE_F
 
 
 /***/ }),
-/* 16 */
+/* 18 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1010,8 +1247,8 @@ var _assign = __webpack_require__(3);
 var emptyObject = __webpack_require__(4);
 var invariant = __webpack_require__(5);
 var warning = __webpack_require__(6);
-var emptyFunction = __webpack_require__(1);
-var checkPropTypes = __webpack_require__(7);
+var emptyFunction = __webpack_require__(2);
+var checkPropTypes = __webpack_require__(8);
 
 // TODO: this is special because it gets imported during build.
 
@@ -2347,10 +2584,10 @@ module.exports = react;
   })();
 }
 
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(1)))
 
 /***/ }),
-/* 17 */
+/* 19 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -2369,7 +2606,7 @@ module.exports = ReactPropTypesSecret;
 
 
 /***/ }),
-/* 18 */
+/* 20 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -2407,15 +2644,15 @@ if (process.env.NODE_ENV === 'production') {
   // DCE check should happen before ReactDOM bundle executes so that
   // DevTools can report bad minification during injection.
   checkDCE();
-  module.exports = __webpack_require__(19);
+  module.exports = __webpack_require__(21);
 } else {
-  module.exports = __webpack_require__(22);
+  module.exports = __webpack_require__(24);
 }
 
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(1)))
 
 /***/ }),
-/* 19 */
+/* 21 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -2431,7 +2668,7 @@ if (process.env.NODE_ENV === 'production') {
 /*
  Modernizr 3.0.0pre (Custom Build) | MIT
 */
-var aa=__webpack_require__(2),l=__webpack_require__(8),B=__webpack_require__(3),C=__webpack_require__(1),ba=__webpack_require__(9),da=__webpack_require__(10),ea=__webpack_require__(11),fa=__webpack_require__(12),ia=__webpack_require__(13),D=__webpack_require__(4);
+var aa=__webpack_require__(0),l=__webpack_require__(9),B=__webpack_require__(3),C=__webpack_require__(2),ba=__webpack_require__(10),da=__webpack_require__(11),ea=__webpack_require__(12),fa=__webpack_require__(13),ia=__webpack_require__(14),D=__webpack_require__(4);
 function E(a){for(var b=arguments.length-1,c="Minified React error #"+a+"; visit http://facebook.github.io/react/docs/error-decoder.html?invariant\x3d"+a,d=0;d<b;d++)c+="\x26args[]\x3d"+encodeURIComponent(arguments[d+1]);b=Error(c+" for the full message or use the non-minified dev environment for full errors and additional helpful warnings.");b.name="Invariant Violation";b.framesToPop=1;throw b;}aa?void 0:E("227");
 var oa={children:!0,dangerouslySetInnerHTML:!0,defaultValue:!0,defaultChecked:!0,innerHTML:!0,suppressContentEditableWarning:!0,suppressHydrationWarning:!0,style:!0};function pa(a,b){return(a&b)===b}
 var ta={MUST_USE_PROPERTY:1,HAS_BOOLEAN_VALUE:4,HAS_NUMERIC_VALUE:8,HAS_POSITIVE_NUMERIC_VALUE:24,HAS_OVERLOADED_BOOLEAN_VALUE:32,HAS_STRING_BOOLEAN_VALUE:64,injectDOMPropertyConfig:function(a){var b=ta,c=a.Properties||{},d=a.DOMAttributeNamespaces||{},e=a.DOMAttributeNames||{};a=a.DOMMutationMethods||{};for(var f in c){ua.hasOwnProperty(f)?E("48",f):void 0;var g=f.toLowerCase(),h=c[f];g={attributeName:g,attributeNamespace:null,propertyName:f,mutationMethod:null,mustUseProperty:pa(h,b.MUST_USE_PROPERTY),
@@ -2651,7 +2888,7 @@ Z.injectIntoDevTools({findFiberByHostInstance:pb,bundleType:0,version:"16.2.0",r
 
 
 /***/ }),
-/* 20 */
+/* 22 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -2666,7 +2903,7 @@ Z.injectIntoDevTools({findFiberByHostInstance:pb,bundleType:0,version:"16.2.0",r
  * @typechecks
  */
 
-var isNode = __webpack_require__(21);
+var isNode = __webpack_require__(23);
 
 /**
  * @param {*} object The object to check.
@@ -2679,7 +2916,7 @@ function isTextNode(object) {
 module.exports = isTextNode;
 
 /***/ }),
-/* 21 */
+/* 23 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -2707,7 +2944,7 @@ function isNode(object) {
 module.exports = isNode;
 
 /***/ }),
-/* 22 */
+/* 24 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -2728,21 +2965,21 @@ if (process.env.NODE_ENV !== "production") {
   (function() {
 'use strict';
 
-var React = __webpack_require__(2);
+var React = __webpack_require__(0);
 var invariant = __webpack_require__(5);
 var warning = __webpack_require__(6);
-var ExecutionEnvironment = __webpack_require__(8);
+var ExecutionEnvironment = __webpack_require__(9);
 var _assign = __webpack_require__(3);
-var emptyFunction = __webpack_require__(1);
-var EventListener = __webpack_require__(9);
-var getActiveElement = __webpack_require__(10);
-var shallowEqual = __webpack_require__(11);
-var containsNode = __webpack_require__(12);
-var focusNode = __webpack_require__(13);
+var emptyFunction = __webpack_require__(2);
+var EventListener = __webpack_require__(10);
+var getActiveElement = __webpack_require__(11);
+var shallowEqual = __webpack_require__(12);
+var containsNode = __webpack_require__(13);
+var focusNode = __webpack_require__(14);
 var emptyObject = __webpack_require__(4);
-var checkPropTypes = __webpack_require__(7);
-var hyphenateStyleName = __webpack_require__(23);
-var camelizeStyleName = __webpack_require__(25);
+var checkPropTypes = __webpack_require__(8);
+var hyphenateStyleName = __webpack_require__(25);
+var camelizeStyleName = __webpack_require__(27);
 
 /**
  * WARNING: DO NOT manually require this module.
@@ -18106,10 +18343,10 @@ module.exports = reactDom;
   })();
 }
 
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(1)))
 
 /***/ }),
-/* 23 */
+/* 25 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -18124,7 +18361,7 @@ module.exports = reactDom;
 
 
 
-var hyphenate = __webpack_require__(24);
+var hyphenate = __webpack_require__(26);
 
 var msPattern = /^ms-/;
 
@@ -18151,7 +18388,7 @@ function hyphenateStyleName(string) {
 module.exports = hyphenateStyleName;
 
 /***/ }),
-/* 24 */
+/* 26 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -18187,7 +18424,7 @@ function hyphenate(string) {
 module.exports = hyphenate;
 
 /***/ }),
-/* 25 */
+/* 27 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -18202,7 +18439,7 @@ module.exports = hyphenate;
 
 
 
-var camelize = __webpack_require__(26);
+var camelize = __webpack_require__(28);
 
 var msPattern = /^-ms-/;
 
@@ -18230,7 +18467,7 @@ function camelizeStyleName(string) {
 module.exports = camelizeStyleName;
 
 /***/ }),
-/* 26 */
+/* 28 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -18265,7 +18502,7 @@ function camelize(string) {
 module.exports = camelize;
 
 /***/ }),
-/* 27 */
+/* 29 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -18277,23 +18514,23 @@ Object.defineProperty(exports, "__esModule", {
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
-var _react = __webpack_require__(2);
+var _react = __webpack_require__(0);
 
 var _react2 = _interopRequireDefault(_react);
 
-var _nota = __webpack_require__(!(function webpackMissingModule() { var e = new Error("Cannot find module \"../nota\""); e.code = 'MODULE_NOT_FOUND'; throw e; }()));
+var _nota = __webpack_require__(7);
 
 var _nota2 = _interopRequireDefault(_nota);
 
-var _secaoNotas = __webpack_require__(!(function webpackMissingModule() { var e = new Error("Cannot find module \"./secaoNotas\""); e.code = 'MODULE_NOT_FOUND'; throw e; }()));
+var _secaoNotas = __webpack_require__(30);
 
 var _secaoNotas2 = _interopRequireDefault(_secaoNotas);
 
-var _formNotas = __webpack_require__(!(function webpackMissingModule() { var e = new Error("Cannot find module \"./formNotas\""); e.code = 'MODULE_NOT_FOUND'; throw e; }()));
+var _formNotas = __webpack_require__(15);
 
 var _formNotas2 = _interopRequireDefault(_formNotas);
 
-var _listaNotas = __webpack_require__(!(function webpackMissingModule() { var e = new Error("Cannot find module \"../listaNotas\""); e.code = 'MODULE_NOT_FOUND'; throw e; }()));
+var _listaNotas = __webpack_require__(36);
 
 var _listaNotas2 = _interopRequireDefault(_listaNotas);
 
@@ -18441,6 +18678,315 @@ var Page = function (_React$Component) {
 }(_react2.default.Component);
 
 exports.default = Page;
+
+/***/ }),
+/* 30 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+
+var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; // DESAFIO 15/02/18
+
+
+var _react = __webpack_require__(0);
+
+var _react2 = _interopRequireDefault(_react);
+
+var _section = __webpack_require__(31);
+
+var _section2 = _interopRequireDefault(_section);
+
+var _formNotas = __webpack_require__(15);
+
+var _formNotas2 = _interopRequireDefault(_formNotas);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+// sabe da lista de notas - props
+// cada item tem um for, filho cria form notas, insere no children fa função,
+// retorna o elemento react
+
+function montaUmFormNotas(posicao, notaAtual, adicionarNota, removerNota, editarFormulario) {
+    var props = {
+        key: posicao,
+        notaAtual: notaAtual,
+        removerNota: removerNota,
+        adicionarNota: adicionarNota,
+        editarFormulario: editarFormulario
+    };
+
+    return _react2.default.createElement(_formNotas2.default, _extends({ key: posicao }, props));
+}
+
+function SecaoNotas(_ref) {
+    var listaNotas = _ref.listaNotas,
+        adicionarNota = _ref.adicionarNota,
+        removerNota = _ref.removerNota,
+        editarFormulario = _ref.editarFormulario;
+
+    var props = {
+        className: 'nova-nota'
+    };
+
+    return _react2.default.createElement(
+        _section2.default,
+        props,
+        listaNotas.pegaTodos().map(function (notaAtual, posicao) {
+            return montaUmFormNota(posicao, props);
+        })
+    );
+}
+
+exports.default = SecaoNotas;
+
+/***/ }),
+/* 31 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+
+var _react = __webpack_require__(0);
+
+var _react2 = _interopRequireDefault(_react);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var Sesao = function Sesao(props) {
+    _react2.default.createElement('section', props);
+};
+
+exports.default = Sesao;
+
+/***/ }),
+/* 32 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+
+var _react = __webpack_require__(0);
+
+var _react2 = _interopRequireDefault(_react);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _objectWithoutProperties(obj, keys) { var target = {}; for (var i in obj) { if (keys.indexOf(i) >= 0) continue; if (!Object.prototype.hasOwnProperty.call(obj, i)) continue; target[i] = obj[i]; } return target; } // Aki ele cria uma tag form com tufo que ela precisa ter,
+// inclusive filhos
+
+// way 1:
+var Form = function Form(_ref) {
+    var children = _ref.children,
+        props = _objectWithoutProperties(_ref, ['children']);
+
+    return _react2.default.createElement(
+        'form',
+        props,
+        children
+    );
+};
+
+exports.default = Form;
+
+// way 2:
+// export default ({ children, ...props }) => <form {...props}>{children}</form>
+
+// standarde JS n usa ;
+
+/***/ }),
+/* 33 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+
+var _react = __webpack_require__(0);
+
+var _react2 = _interopRequireDefault(_react);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+// FORMA 1 - menos melhor
+// essa n tem childen
+function FormInput(props) {
+    // 20/02
+    /*
+    SEM SPREAD
+    {<input  className={props.className}
+            
+            type={props.type}
+            name={props.name}
+            placeholder={props.placeholder}
+            defaultValue={props.defaultValue}
+            onChange={props.defaultValue}
+    />}*/
+
+    // COM SPREAD
+    _react2.default.createElement('input', props);
+} // Aki ele cria tudo que um input precisa ter.
+
+exports.default = FormInput;
+
+/***/ }),
+/* 34 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+
+var _react = __webpack_require__(0);
+
+var _react2 = _interopRequireDefault(_react);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+// FORMA 1
+function FormTextarea(props) {
+    _react2.default.createElement('textarea', props);
+} // Aki ele cria um textarea e com tudo q precisa
+// code in the dark - competition
+
+exports.default = FormTextarea;
+
+/***/ }),
+/* 35 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+
+var _react = __webpack_require__(0);
+
+var _react2 = _interopRequireDefault(_react);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function FormButton(children) {
+    for (var _len = arguments.length, props = Array(_len > 1 ? _len - 1 : 0), _key = 1; _key < _len; _key++) {
+        props[_key - 1] = arguments[_key];
+    }
+
+    _react2.default.createElement(
+        'button',
+        props,
+        children
+    );
+} // Cria um button com tudo que ele precisa e returna
+
+exports.default = FormButton;
+
+/***/ }),
+/* 36 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }(); // Aqui contem as funções que uma "lista de notas" deve ter e a 
+// inicialização de uma lista de notas (constructor)
+
+var _nota = __webpack_require__(7);
+
+var _nota2 = _interopRequireDefault(_nota);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+var ListaNotas = function () {
+    function ListaNotas(observador) {
+        _classCallCheck(this, ListaNotas);
+
+        this._listaInterna = [];
+        this._observador = observador;
+    }
+
+    // aki a nota n existe.
+
+
+    _createClass(ListaNotas, [{
+        key: 'adiciona',
+        value: function adiciona(novoTitulo, novoTexto) {
+            var nota = new _nota2.default(novoTitulo, novoTexto);
+            this._listaInterna.push(nota);
+            // pq ela espera receber a lista, que é o this aki.
+            this._observador(this);
+        }
+    }, {
+        key: 'remove',
+        value: function remove(posicao, quantidade) {
+            this._listaInterna.splice(posicao, 1);
+            this._observador(this);
+        }
+    }, {
+        key: 'edita',
+        value: function edita(posicao) {
+            this._listaInterna[posicao].editando = true;
+            this._observador(this);
+        }
+
+        // dif do add - aki a nota já existe
+
+    }, {
+        key: 'salva',
+        value: function salva(posicao, novoTitulo, novoTexto) {
+            this._listaInterna[posicao].titulo = novoTitulo;
+            this._listaInterna[posicao].texto = novoTexto;
+            this._listaInterna[posicao].editando = false;
+            this._observador(this);
+        }
+    }, {
+        key: 'pega',
+        value: function pega(posicao) {
+            return this._listaInterna[posicao];
+        }
+    }, {
+        key: 'pegaTodos',
+        value: function pegaTodos() {
+            return this._listaInterna;
+        }
+    }, {
+        key: 'contaTotal',
+        value: function contaTotal() {
+            return this._listaInterna.length;
+        }
+    }]);
+
+    return ListaNotas;
+}();
+
+;
+
+exports.default = ListaNotas;
 
 /***/ })
 /******/ ]);

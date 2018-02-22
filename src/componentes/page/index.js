@@ -2,10 +2,10 @@
 
 import React from 'react'
 
-import Nota from '../nota'
-import SecaoNotas from './secaoNotas'
-import FormNotas from './formNotas'
-import ListaNotas from '../listaNotas'
+import Nota from '../../nota'
+import SecaoNotas from './../secaoNotas'
+import FormNotas from './../formNotas'
+import ListaNotas from '../../listaNotas'
 
 // form index.js
 // const listaNotas = new ListaNotas(observaMudancasNaLista);
