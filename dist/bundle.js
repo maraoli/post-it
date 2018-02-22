@@ -300,6 +300,21 @@ module.exports = emptyFunction;
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
+/* WEBPACK VAR INJECTION */(function(process) {
+
+if (process.env.NODE_ENV === 'production') {
+  module.exports = __webpack_require__(15);
+} else {
+  module.exports = __webpack_require__(16);
+}
+
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
+
+/***/ }),
+/* 3 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
 /*
 object-assign
 (c) Sindre Sorhus
@@ -393,7 +408,7 @@ module.exports = shouldUseNative() ? Object.assign : function (target, source) {
 
 
 /***/ }),
-/* 3 */
+/* 4 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -414,21 +429,6 @@ if (process.env.NODE_ENV !== 'production') {
 }
 
 module.exports = emptyObject;
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
-
-/***/ }),
-/* 4 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-/* WEBPACK VAR INJECTION */(function(process) {
-
-if (process.env.NODE_ENV === 'production') {
-  module.exports = __webpack_require__(15);
-} else {
-  module.exports = __webpack_require__(16);
-}
-
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
@@ -940,7 +940,7 @@ module.exports = focusNode;
 "use strict";
 
 
-var _react = __webpack_require__(4);
+var _react = __webpack_require__(2);
 
 var _react2 = _interopRequireDefault(_react);
 
@@ -970,7 +970,7 @@ _reactDom2.default.render(_react2.default.createElement(_page2.default, null), d
  * LICENSE file in the root directory of this source tree.
  */
 
-var m=__webpack_require__(2),n=__webpack_require__(3),p=__webpack_require__(1),q="function"===typeof Symbol&&Symbol["for"],r=q?Symbol["for"]("react.element"):60103,t=q?Symbol["for"]("react.call"):60104,u=q?Symbol["for"]("react.return"):60105,v=q?Symbol["for"]("react.portal"):60106,w=q?Symbol["for"]("react.fragment"):60107,x="function"===typeof Symbol&&Symbol.iterator;
+var m=__webpack_require__(3),n=__webpack_require__(4),p=__webpack_require__(1),q="function"===typeof Symbol&&Symbol["for"],r=q?Symbol["for"]("react.element"):60103,t=q?Symbol["for"]("react.call"):60104,u=q?Symbol["for"]("react.return"):60105,v=q?Symbol["for"]("react.portal"):60106,w=q?Symbol["for"]("react.fragment"):60107,x="function"===typeof Symbol&&Symbol.iterator;
 function y(a){for(var b=arguments.length-1,e="Minified React error #"+a+"; visit http://facebook.github.io/react/docs/error-decoder.html?invariant\x3d"+a,c=0;c<b;c++)e+="\x26args[]\x3d"+encodeURIComponent(arguments[c+1]);b=Error(e+" for the full message or use the non-minified dev environment for full errors and additional helpful warnings.");b.name="Invariant Violation";b.framesToPop=1;throw b;}
 var z={isMounted:function(){return!1},enqueueForceUpdate:function(){},enqueueReplaceState:function(){},enqueueSetState:function(){}};function A(a,b,e){this.props=a;this.context=b;this.refs=n;this.updater=e||z}A.prototype.isReactComponent={};A.prototype.setState=function(a,b){"object"!==typeof a&&"function"!==typeof a&&null!=a?y("85"):void 0;this.updater.enqueueSetState(this,a,b,"setState")};A.prototype.forceUpdate=function(a){this.updater.enqueueForceUpdate(this,a,"forceUpdate")};
 function B(a,b,e){this.props=a;this.context=b;this.refs=n;this.updater=e||z}function C(){}C.prototype=A.prototype;var D=B.prototype=new C;D.constructor=B;m(D,A.prototype);D.isPureReactComponent=!0;function E(a,b,e){this.props=a;this.context=b;this.refs=n;this.updater=e||z}var F=E.prototype=new C;F.constructor=E;m(F,A.prototype);F.unstable_isAsyncReactComponent=!0;F.render=function(){return this.props.children};var G={current:null},H=Object.prototype.hasOwnProperty,I={key:!0,ref:!0,__self:!0,__source:!0};
@@ -1006,8 +1006,8 @@ if (process.env.NODE_ENV !== "production") {
   (function() {
 'use strict';
 
-var _assign = __webpack_require__(2);
-var emptyObject = __webpack_require__(3);
+var _assign = __webpack_require__(3);
+var emptyObject = __webpack_require__(4);
 var invariant = __webpack_require__(5);
 var warning = __webpack_require__(6);
 var emptyFunction = __webpack_require__(1);
@@ -2431,7 +2431,7 @@ if (process.env.NODE_ENV === 'production') {
 /*
  Modernizr 3.0.0pre (Custom Build) | MIT
 */
-var aa=__webpack_require__(4),l=__webpack_require__(8),B=__webpack_require__(2),C=__webpack_require__(1),ba=__webpack_require__(9),da=__webpack_require__(10),ea=__webpack_require__(11),fa=__webpack_require__(12),ia=__webpack_require__(13),D=__webpack_require__(3);
+var aa=__webpack_require__(2),l=__webpack_require__(8),B=__webpack_require__(3),C=__webpack_require__(1),ba=__webpack_require__(9),da=__webpack_require__(10),ea=__webpack_require__(11),fa=__webpack_require__(12),ia=__webpack_require__(13),D=__webpack_require__(4);
 function E(a){for(var b=arguments.length-1,c="Minified React error #"+a+"; visit http://facebook.github.io/react/docs/error-decoder.html?invariant\x3d"+a,d=0;d<b;d++)c+="\x26args[]\x3d"+encodeURIComponent(arguments[d+1]);b=Error(c+" for the full message or use the non-minified dev environment for full errors and additional helpful warnings.");b.name="Invariant Violation";b.framesToPop=1;throw b;}aa?void 0:E("227");
 var oa={children:!0,dangerouslySetInnerHTML:!0,defaultValue:!0,defaultChecked:!0,innerHTML:!0,suppressContentEditableWarning:!0,suppressHydrationWarning:!0,style:!0};function pa(a,b){return(a&b)===b}
 var ta={MUST_USE_PROPERTY:1,HAS_BOOLEAN_VALUE:4,HAS_NUMERIC_VALUE:8,HAS_POSITIVE_NUMERIC_VALUE:24,HAS_OVERLOADED_BOOLEAN_VALUE:32,HAS_STRING_BOOLEAN_VALUE:64,injectDOMPropertyConfig:function(a){var b=ta,c=a.Properties||{},d=a.DOMAttributeNamespaces||{},e=a.DOMAttributeNames||{};a=a.DOMMutationMethods||{};for(var f in c){ua.hasOwnProperty(f)?E("48",f):void 0;var g=f.toLowerCase(),h=c[f];g={attributeName:g,attributeNamespace:null,propertyName:f,mutationMethod:null,mustUseProperty:pa(h,b.MUST_USE_PROPERTY),
@@ -2728,18 +2728,18 @@ if (process.env.NODE_ENV !== "production") {
   (function() {
 'use strict';
 
-var React = __webpack_require__(4);
+var React = __webpack_require__(2);
 var invariant = __webpack_require__(5);
 var warning = __webpack_require__(6);
 var ExecutionEnvironment = __webpack_require__(8);
-var _assign = __webpack_require__(2);
+var _assign = __webpack_require__(3);
 var emptyFunction = __webpack_require__(1);
 var EventListener = __webpack_require__(9);
 var getActiveElement = __webpack_require__(10);
 var shallowEqual = __webpack_require__(11);
 var containsNode = __webpack_require__(12);
 var focusNode = __webpack_require__(13);
-var emptyObject = __webpack_require__(3);
+var emptyObject = __webpack_require__(4);
 var checkPropTypes = __webpack_require__(7);
 var hyphenateStyleName = __webpack_require__(23);
 var camelizeStyleName = __webpack_require__(25);
@@ -18266,9 +18266,181 @@ module.exports = camelize;
 
 /***/ }),
 /* 27 */
-/***/ (function(module, exports) {
+/***/ (function(module, exports, __webpack_require__) {
 
-throw new Error("Module build failed: SyntaxError: E:/1) FILES/WebAula/Together/Aulas/2018/02-14-2018/post-it/src/componentes/page/index.js: Unterminated JSX contents (103:19)\n\n\u001b[0m \u001b[90m 101 | \u001b[39m                \u001b[33m<\u001b[39m\u001b[33mFormNotas\u001b[39m key\u001b[33m=\u001b[39m\u001b[32m\"form-note\"\u001b[39m\u001b[33m>\u001b[39m\u001b[33m<\u001b[39m\u001b[33mFormNotas\u001b[39m\u001b[33m/\u001b[39m\u001b[33m>\u001b[39m\n \u001b[90m 102 | \u001b[39m                {sectionNotas}\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 103 | \u001b[39m            \u001b[33m<\u001b[39m\u001b[33m/\u001b[39m\u001b[33mmain\u001b[39m\u001b[33m>\u001b[39m\n \u001b[90m     | \u001b[39m                   \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 104 | \u001b[39m        )\u001b[33m;\u001b[39m\n \u001b[90m 105 | \u001b[39m    }\n \u001b[90m 106 | \u001b[39m}\u001b[0m\n");
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _react = __webpack_require__(2);
+
+var _react2 = _interopRequireDefault(_react);
+
+var _nota = __webpack_require__(!(function webpackMissingModule() { var e = new Error("Cannot find module \"../nota\""); e.code = 'MODULE_NOT_FOUND'; throw e; }()));
+
+var _nota2 = _interopRequireDefault(_nota);
+
+var _secaoNotas = __webpack_require__(!(function webpackMissingModule() { var e = new Error("Cannot find module \"./secaoNotas\""); e.code = 'MODULE_NOT_FOUND'; throw e; }()));
+
+var _secaoNotas2 = _interopRequireDefault(_secaoNotas);
+
+var _formNotas = __webpack_require__(!(function webpackMissingModule() { var e = new Error("Cannot find module \"./formNotas\""); e.code = 'MODULE_NOT_FOUND'; throw e; }()));
+
+var _formNotas2 = _interopRequireDefault(_formNotas);
+
+var _listaNotas = __webpack_require__(!(function webpackMissingModule() { var e = new Error("Cannot find module \"../listaNotas\""); e.code = 'MODULE_NOT_FOUND'; throw e; }()));
+
+var _listaNotas2 = _interopRequireDefault(_listaNotas);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; } // MAIN
+
+// form index.js
+// const listaNotas = new ListaNotas(observaMudancasNaLista);
+
+function montaFormNotas(_ref) {
+    var adicionarNota = _ref.adicionarNota,
+        removerNota = _ref.removerNota,
+        editarFormulario = _ref.editarFormulario;
+
+    var props = {
+        key: 'form-note',
+        posicao: null,
+        notaAtual: new _nota2.default('', ''),
+        adicionarNota: adicionarNota,
+        removerNota: removerNota,
+        editaFormulario: editarFormulario
+    };
+    return _react2.default.createElement(_formNotas2.default, props);
+}
+
+function montaSectionNotas(_ref2) {
+    var listaNotas = _ref2.listaNotas,
+        adicionarNota = _ref2.adicionarNota,
+        removerNota = _ref2.removerNota,
+        editarFormulario = _ref2.editarFormulario;
+
+    var props = {
+        key: 'section-notes',
+        listaNotas: listaNotas,
+        adicionarNota: adicionarNota,
+        removerNota: removerNota,
+        editarFormulario: editarFormulario
+    };
+
+    return _react2.default.createElement(montaSectionNotas, props);
+}
+
+// render e setState existem em .Componet
+
+var Page = function (_React$Component) {
+    _inherits(Page, _React$Component);
+
+    function Page(props) {
+        _classCallCheck(this, Page);
+
+        // 20/02
+        // bind - função que: vide baixo
+        // this sempre se refera a pag clas Page, esse this abaixo represente o class Page
+        // render n precisa pq ele n e passado para componentes filhos
+        var _this = _possibleConstructorReturn(this, (Page.__proto__ || Object.getPrototypeOf(Page)).call(this, props));
+        // chama classe pai
+
+
+        _this.adicionarNota = _this.adicionarNota.bind(_this);
+        _this.removerNota = _this.removerNota.bind(_this);
+        _this.editarFormulario = _this.editarFormulario.bind(_this);
+        _this.atualizaPagina = _this.atualizaPagina.bind(_this);
+
+        _this.state = {
+            listaNotas: new _listaNotas2.default(_this.atualizaPagina)
+        };
+        return _this;
+    }
+
+    // MODO 1 - Nova função atualiza page
+
+
+    _createClass(Page, [{
+        key: 'atualizaPagina',
+        value: function atualizaPagina(listaNotas) {
+            console.log('Quem é this?', this);
+            // state/estado é dados da pagina/componente
+            // this é Page
+            this.setState({
+                listaNotas: novaLista
+            });
+        }
+
+        // sessao notas e montaFromNotas usam essas 3 funcoes por isso deixamos fora
+        // recortei as 3 do index
+
+    }, {
+        key: 'editarFormulario',
+        value: function editarFormulario(posicao) {
+            this.state.listaNotas.edita(posicao);
+        }
+
+        // 20/02
+
+    }, {
+        key: 'adicionarNota',
+        value: function adicionarNota(titulo, texto, posicao) {
+            if (this.state.listaNotas.pega(posicao)) {
+                this.state.listaNotas.salva(posicao, titulo, texto);
+            } else {
+                this.state.listaNotas.adiciona(titulo, texto);
+            }
+        }
+    }, {
+        key: 'removerNota',
+        value: function removerNota(evento, posicao) {
+            evento.stopPropagation();
+            this.state.listaNotas.remove(posicao);
+        }
+    }, {
+        key: 'render',
+        value: function render() {
+            // ?
+            var state = this.state,
+                adicionarNota = this.adicionarNota,
+                removerNota = this.removerNota,
+                editarFormulario = this.editarFormulario;
+            var listaNotas = state.listaNotas;
+
+
+            var props = { className: 'container' };
+
+            var formNotas = montaFormNotas(this.adicionarNota, this.removerNota, this.editarFormulario);
+            var sectionNotas = montaSectionNotas(this.state.listaNotas, this.adicionarNota, this.removerNota, this.editarFormulario);
+
+            return (
+                // <React.Fragment>
+                // <img src={srcBackground}/>
+                _react2.default.createElement(
+                    'main',
+                    props,
+                    formNotas,
+                    sectionNotas
+                )
+            );
+        }
+    }]);
+
+    return Page;
+}(_react2.default.Component);
+
+exports.default = Page;
 
 /***/ })
 /******/ ]);
