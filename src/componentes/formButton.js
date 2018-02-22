@@ -2,6 +2,7 @@
 
 import React from 'react'
 
+// way 1
 const FormButton = (children, ...props) =>(
     <button {...props}>
         {children}
@@ -9,3 +10,6 @@ const FormButton = (children, ...props) =>(
 )
 
 export default FormButton;
+
+// way 2
+// export default ({ children, ...props }) => <button {...props}>{children}</button>

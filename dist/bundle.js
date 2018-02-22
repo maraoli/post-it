@@ -18876,6 +18876,7 @@ var _react2 = _interopRequireDefault(_react);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
+// way 1
 var FormButton = function FormButton(children) {
     for (var _len = arguments.length, props = Array(_len > 1 ? _len - 1 : 0), _key = 1; _key < _len; _key++) {
         props[_key - 1] = arguments[_key];
@@ -18889,6 +18890,9 @@ var FormButton = function FormButton(children) {
 }; // Cria um button com tudo que ele precisa e returna
 
 exports.default = FormButton;
+
+// way 2
+// export default ({ children, ...props }) => <button {...props}>{children}</button>
 
 /***/ }),
 /* 36 */
