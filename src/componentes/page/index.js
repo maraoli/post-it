@@ -10,7 +10,7 @@ import ListaNotas from '../../listaNotas'
 // form index.js
 // const listaNotas = new ListaNotas(observaMudancasNaLista);
 
-function montaFormNotas({adicionarNota,removerNota, editarFormulario}){
+function montaFormNotas(adicionarNota,removerNota, editarFormulario){
     const props ={
         key:'form-note',
         posicao: null, 
@@ -22,7 +22,7 @@ function montaFormNotas({adicionarNota,removerNota, editarFormulario}){
     return <FormNotas {...props} />
 }
 
-function montaSectionNotas({listaNotas,adicionarNota,removerNota, editarFormulario}){
+function montaSectionNotas(listaNotas,adicionarNota,removerNota, editarFormulario){
     const props ={
         key:'section-notes',
         listaNotas,
@@ -31,7 +31,7 @@ function montaSectionNotas({listaNotas,adicionarNota,removerNota, editarFormular
         editarFormulario
     }
 
-    return React.createElement(montaSectionNotas,props)
+    return <SecaoNotas {...props} />
 }
 
 // render e setState existem em .Componet

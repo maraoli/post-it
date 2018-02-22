@@ -4,6 +4,6 @@ import ReactDOM from 'react-dom'
 import Page from './componentes/page'
 
 ReactDOM.render(
-    React.createElement(Page, null), 
+    <Page />, 
     document.getElementById('root')
 )
