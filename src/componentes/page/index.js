@@ -91,5 +91,20 @@ class Page extends React.Component {
     }
 }
 
-export default Page
+// 22/02/18
+function Page({listaNotas, adicionarNota, removerNota, editarFormulario}){
+    const props = {className:'container'}
 
+    let formNotas = montaFormNotas(adicionarNota, removerNota, editarFormulario)
+    // FALTA TERMINAR
+    let sectionNotas = montaSectionNotas(listaNotas, adicionarNota, removerNota, editarFormulario )
+
+    return (
+        <main {...props}>
+            {formNotas}
+            {sectionNotas}
+        </main>
+    );
+}
+
+export default Page

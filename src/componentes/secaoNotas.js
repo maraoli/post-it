@@ -11,7 +11,7 @@ import FormNotas from './formNotas'
 function montaUmFormNotas(posicao, notaAtual, adicionarNota, removerNota, editarFormulario) {
     const props = {
         key: posicao,
-        notaAtual,
+        notaAtual: listaNotas[posicao],
         removerNota,
         adicionarNota,
         editarFormulario,
@@ -27,7 +27,7 @@ function SecaoNotas({listaNotas,adicionarNota,removerNota, editarFormulario}){
 
     return (
         <Section {...props}>
-            {listaNotas.pegaTodos().map((notaAtual, posicao) => (
+            {listaNotas.map((notaAtual, posicao) => (
                 montaUmFormNota(posicao, props)
             ))}
         </Section>
