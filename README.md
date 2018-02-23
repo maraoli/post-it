@@ -12,3 +12,5 @@ https://redux.js.org/basics/actions
 
 Redutores:
 https://redux.js.org/basics/reducers
+
+Rodo :,)
