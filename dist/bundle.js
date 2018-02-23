@@ -1185,13 +1185,28 @@ var _reactDom = __webpack_require__(20);
 
 var _reactDom2 = _interopRequireDefault(_reactDom);
 
+var _redux = __webpack_require__(!(function webpackMissingModule() { var e = new Error("Cannot find module \"redux\""); e.code = 'MODULE_NOT_FOUND'; throw e; }()));
+
+var _reactRedux = __webpack_require__(!(function webpackMissingModule() { var e = new Error("Cannot find module \"react-redux\""); e.code = 'MODULE_NOT_FOUND'; throw e; }()));
+
+var _reducers = __webpack_require__(37);
+
+var _reducers2 = _interopRequireDefault(_reducers);
+
 var _page = __webpack_require__(29);
 
 var _page2 = _interopRequireDefault(_page);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-_reactDom2.default.render(_react2.default.createElement(_page2.default, null), document.getElementById('root')); // Aqui é o lugar onde utilizamos o
+// Aqui é o lugar onde utilizamos o 
+var store = (0, _redux.createStore)(_reducers2.default);
+
+_reactDom2.default.render(_react2.default.createElement(
+    _reactRedux.Provider,
+    { store: store },
+    _react2.default.createElement(_page2.default, null)
+), document.getElementById('root'));
 
 /***/ }),
 /* 17 */
@@ -18973,6 +18988,12 @@ var ListaNotas = function () {
 ;
 
 exports.default = ListaNotas;
+
+/***/ }),
+/* 37 */
+/***/ (function(module, exports) {
+
+throw new Error("Module build failed: E:/1) FILES/WebAula/Together/Aulas/2018/02-14-2018/post-it/src/reducers.js: Duplicate declaration \"estadoNovo\"\n\n\u001b[0m \u001b[90m 20 | \u001b[39m        \u001b[90m// map , funcao filter\u001b[39m\n \u001b[90m 21 | \u001b[39m        \u001b[36mcase\u001b[39m \u001b[33mREMOVER_NOTA\u001b[39m\u001b[33m:\u001b[39m\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 22 | \u001b[39m            \u001b[36mconst\u001b[39m estadoNovo \u001b[33m=\u001b[39m{\n \u001b[90m    | \u001b[39m                  \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 23 | \u001b[39m                \u001b[90m// filter exe funcao pra cada item da lista , é declarativo , com for dentro\u001b[39m\n \u001b[90m 24 | \u001b[39m                notas\u001b[33m:\u001b[39m estadoAtual\u001b[33m.\u001b[39mnotas\u001b[33m.\u001b[39mfilter((nota\u001b[33m,\u001b[39m posicao) \u001b[33m=>\u001b[39m{\n \u001b[90m 25 | \u001b[39m                    \u001b[36mreturn\u001b[39m posicao\u001b[33m!==\u001b[39macao\u001b[33m.\u001b[39mposicao\u001b[0m\n");
 
 /***/ })
 /******/ ]);

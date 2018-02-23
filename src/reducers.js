@@ -1,5 +1,5 @@
 // fazer swite case pras actions
-// recebemos as coisa atraves do acao.
+// recebemos as coisa atraves do acao.atributo para modificar
 
 import {ADICIONAR_NOTA, REMOVER_NOTA, HABILITAR_NOTA, ALTERAR_NOTA} from './actions'
 
