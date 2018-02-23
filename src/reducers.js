@@ -1,7 +1,13 @@
+// ************************ REDUTORES
+
+// retorna o novo estado da aplicação
+// stado - se muda eu preciso atulizar, precisa estar no estado
+
 // fazer swite case pras actions
 // recebemos as coisa atraves do acao.atributo para modificar
 
 import {ADICIONAR_NOTA, REMOVER_NOTA, HABILITAR_NOTA, ALTERAR_NOTA} from './actions'
+import ListaNotas from './listaNotas'
 
 const estadoInicial ={
     notas: []
@@ -19,16 +25,16 @@ export default function postitApp(estadoAtual = estadoInicial, acao){
             return estadoNovo;
         // map , funcao filter
         case REMOVER_NOTA:
-            const estadoNovo ={
+            const estadoNovo2 ={
                 // filter exe funcao pra cada item da lista , é declarativo , com for dentro
                 notas: estadoAtual.notas.filter((nota, posicao) =>{
                     return posicao!==acao.posicao
                 })
             };
-            return estadoNovo;
+            return estadoNovo2;
         // map - qual item tenho q inserir na lista
         case HABILITAR_NOTA:
-            const estadoNovo ={
+            const estadoNovo3 ={
                 notas: estadoAtual.notas.map((nota, posicao) =>{
                     if(posicao === acao.posicao){
                         //ou:  return {...nota,editando: true}
@@ -39,10 +45,10 @@ export default function postitApp(estadoAtual = estadoInicial, acao){
                     //  ou return posicao === acao.posicao ? new Nota(nota.titulo, nota.texto, true) : nota
                 })
             }
-            return estadoNovo;
+            return estadoNovo3;
         // map
         case ALTERAR_NOTA:
-            const estadoNovo = {
+            const estadoNovo4 = {
                 notas: estadoAtual.notas.map((nota, posicao) =>{
                     if(posicao === acao.posicao){
                         return new Nota(acoa.titulo, acao.texto, false)
@@ -52,10 +58,11 @@ export default function postitApp(estadoAtual = estadoInicial, acao){
                     }
                 })
             };
-            return estadoNovo;
+            return estadoNovo4;
 
         default:
-            return state
+            // return state
+            return "state"
     }
 }
 
