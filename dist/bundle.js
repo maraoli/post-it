@@ -21851,7 +21851,7 @@ function SecaoNotas(_ref) {
         _section2.default,
         props,
         listaNotas.map(function (notaAtual, posicao) {
-            return montaUmFormNota(posicao, props)
+            return montaUmFormNota(posicao, notaAtual, adicionarNota, removerNota, editarFormulario)
             // montaUmFormNota(adicionarNota, excluirNota, editarNota, notaAtual, index)
             ;
         })

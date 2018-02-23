@@ -27,7 +27,7 @@ function SecaoNotas({listaNotas,adicionarNota,removerNota, editarFormulario}){
     return (
         <Section {...props}>
             {listaNotas.map((notaAtual, posicao) => (
-                montaUmFormNota(posicao, props)
+                montaUmFormNota(posicao, notaAtual, adicionarNota, removerNota, editarFormulario)
                 // montaUmFormNota(adicionarNota, excluirNota, editarNota, notaAtual, index)
             ))}
         </Section>
