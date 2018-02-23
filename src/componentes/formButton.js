@@ -3,7 +3,7 @@
 import React from 'react'
 
 // way 1
-const FormButton = (children, ...props) =>(
+const FormButton = ({children, ...props}) =>(
     <button {...props}>
         {children}
     </button>

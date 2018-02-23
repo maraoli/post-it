@@ -18545,11 +18545,7 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 // form index.js
 // const listaNotas = new ListaNotas(observaMudancasNaLista);
 
-function montaFormNotas(_ref) {
-    var adicionarNota = _ref.adicionarNota,
-        removerNota = _ref.removerNota,
-        editarFormulario = _ref.editarFormulario;
-
+function montaFormNotas(adicionarNota, removerNota, editarFormulario) {
     var props = {
         key: 'form-note',
         posicao: null,
@@ -18561,12 +18557,7 @@ function montaFormNotas(_ref) {
     return _react2.default.createElement(_formNotas2.default, props);
 }
 
-function montaSectionNotas(_ref2) {
-    var listaNotas = _ref2.listaNotas,
-        adicionarNota = _ref2.adicionarNota,
-        removerNota = _ref2.removerNota,
-        editarFormulario = _ref2.editarFormulario;
-
+function montaSectionNotas(listaNotas, adicionarNota, removerNota, editarFormulario) {
     var props = {
         key: 'section-notes',
         listaNotas: listaNotas,
@@ -18575,7 +18566,7 @@ function montaSectionNotas(_ref2) {
         editarFormulario: editarFormulario
     };
 
-    return _react2.default.createElement(montaSectionNotas, props);
+    return _react2.default.createElement(_secaoNotas2.default, props);
 }
 
 // render e setState existem em .Componet
@@ -18762,7 +18753,7 @@ var _react2 = _interopRequireDefault(_react);
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 var Sesao = function Sesao(props) {
-    _react2.default.createElement('section', props);
+    return _react2.default.createElement('section', props);
 };
 
 exports.default = Sesao;
@@ -18876,18 +18867,19 @@ var _react2 = _interopRequireDefault(_react);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
+function _objectWithoutProperties(obj, keys) { var target = {}; for (var i in obj) { if (keys.indexOf(i) >= 0) continue; if (!Object.prototype.hasOwnProperty.call(obj, i)) continue; target[i] = obj[i]; } return target; } // Cria um button com tudo que ele precisa e retorna
+
 // way 1
-var FormButton = function FormButton(children) {
-    for (var _len = arguments.length, props = Array(_len > 1 ? _len - 1 : 0), _key = 1; _key < _len; _key++) {
-        props[_key - 1] = arguments[_key];
-    }
+var FormButton = function FormButton(_ref) {
+    var children = _ref.children,
+        props = _objectWithoutProperties(_ref, ['children']);
 
     return _react2.default.createElement(
         'button',
         props,
         children
     );
-}; // Cria um button com tudo que ele precisa e retorna
+};
 
 exports.default = FormButton;
 
