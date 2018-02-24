@@ -6,7 +6,7 @@
 // fazer swite case pras actions
 // recebemos as coisa atraves do acao.atributo para modificar
 
-import {ADICIONAR_NOTA, REMOVER_NOTA, HABILITAR_NOTA, ALTERAR_NOTA} from './actions'
+import {ADICIONAR_NOTA, REMOVER_NOTA, HABILITAR_NOTA, ALTERAR_NOTA, LOGA_USUARIO, DESLOGA_USUARIO} from './actions'
 import ListaNotas from './listaNotas'
 
 const estadoInicial ={
@@ -66,26 +66,9 @@ export default function postitApp(estadoAtual = estadoInicial, acao){
     }
 }
 
-/* my code bugado :(
-const adicionarNota = (listaDeNotas, novaNota) =>{
-    return listaDeNotas = listaDeNotas.concat(novaNota)
+export default function usuario(estadoAtual = false, acao){
+    switch(acao.type){
+        case: LOGA_USUARIO:
+        case: DESLOGA_USUARIO:
+    }
 }
-
-const removerNota = (listaDeNotas, removeNota, posicao) =>{
-    listaDeNotas.filter(function(removeNota, posicao ,listaDeNotas){
-        return listaDeNotas
-    })
-}
-
-const habilidarNota = (listaDeNotas, notaHabilitada)=>{
-    listaDeNotas.map(function(){
-        return notaHabilitada.editando === true
-    })
-}
-
-const alterarNota = (listaDeNotas, notaEditada) =>{
-    listaDeNotas.map(function(){
-        return notaEditada.editando === false
-    })
-}
-*/
