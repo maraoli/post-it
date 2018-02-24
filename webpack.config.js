@@ -2,6 +2,9 @@ const path = require('path');
 
 module.exports = {
   entry: './src/index.js',
+  devServer:{
+      contentBase: './dist'
+  },
   devtool:'./src/index.js',
   output: {
     filename: 'bundle.js',
