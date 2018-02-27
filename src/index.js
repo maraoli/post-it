@@ -1,13 +1,14 @@
 // Aqui é o lugar onde utilizamos o 
 import React from 'react'
 import ReactDOM from 'react-dom'
-import { createStore } from 'redux'
+import { createStore, applyMiddleware } from 'redux'
+import thunk from 'redux-thunk'
 import { Provider } from 'react-redux'
 
 import redutor from './reducers'
 import Page from './componentes/page'
 
-let store = createStore(redutor)
+let store = createStore(redutor, applyMiddleware(thunk))
 
 
 ReactDOM.render(

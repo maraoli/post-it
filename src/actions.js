@@ -7,6 +7,8 @@ export const LOGA_USUARIO = 'LOGA_USUARIO'
 export const DESLOGA_USUARIO = 'DESLOGA_USUARIO'
 
 export function adicionarNota(titulo, texto){
+    postNota(titulo, texto)
+    
     return(
         type: ADICIONAR_NOTA,
         titulo,
