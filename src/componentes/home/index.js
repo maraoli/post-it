@@ -14,7 +14,7 @@ function montaFormNotas(adicionarNota,removerNota, editarFormulario){
     const props ={
         key:'form-note',
         posicao: null, 
-        notaAtual: new Nota('', ''),
+        notaAtual: new Nota(undefined, '', ''),
         adicionarNota: adicionarNota,
         removerNota: removerNota,
         editaFormulario: editarFormulario
