@@ -34,10 +34,18 @@ export function adicionarNota(titulo, texto){
 }
 
 export function removerNota(titulo, texto){
-    return(
-        type: REMOVER_NOTA,
-        posicao
-    )
+    return dispatch =>{
+        deletaNota(posicao)
+        .then(()=>{
+            dispatch({
+                type: REMOVER_NOTA,
+                posicao
+            })
+        })
+        .catch(erro=>{
+            console.log('Ocorreu erro', erro)
+        })
+    }
 }
 
 export function habilitarNota(titulo, texto){
@@ -48,12 +56,20 @@ export function habilitarNota(titulo, texto){
 }
 
 export function alterarNota(posicao, titulo, texto){
-    return(
-        type: ALTERAR_NOTA,
-        posicao,
-        titulo,
-        texto
-    )
+    return dispatch =>{
+        // put - 
+        putNota(posicao, titulo, texto)
+        .then(()=>{
+            dispatch({
+                type: ALTERAR_NOTA,
+                posicao,
+                titulo,
+                texto
+            })
+        })
+        .catch(erro=>{
+            console.log('Ocorreu erro', erro)
+        })
 }
 
 export function logaUsuario(usuario){
