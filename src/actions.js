@@ -1,3 +1,5 @@
+import {postNota, deleteNota, putNota} from '../api'
+
 export const ADICIONAR_NOTA = 'ADICIONAR_NOTA'
 export const REMOVER_NOTA = 'REMOVER_NOTA'
 export const HABILITAR_EDICAO = 'HABILITAR_EDICAO'
