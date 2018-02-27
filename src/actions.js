@@ -7,13 +7,30 @@ export const LOGA_USUARIO = 'LOGA_USUARIO'
 export const DESLOGA_USUARIO = 'DESLOGA_USUARIO'
 
 export function adicionarNota(titulo, texto){
-    postNota(titulo, texto)
+    return dispatch =>{
+        postNota(titulo, texto)
+        // quando - pode ser na mesma linha de cima
+        .then(resposta =>{
+            // disparar acao de add nota na store
+            dispatch({
+                type: ADICIONAR_NOTA,
+                posicao: resposta.data.posicao,
+                titulo,
+                texto
+            })
+        })
+        //  se a acao dar errado
+        .catch(erro=>{
+            console.log('Ocorreu erro', erro)
+        })
+        // se acontecer
+    }
     
-    return(
-        type: ADICIONAR_NOTA,
-        titulo,
-        texto
-    )
+    // return(
+    //     type: ADICIONAR_NOTA,
+    //     titulo,
+    //     texto
+    // )
 }
 
 export function removerNota(titulo, texto){
