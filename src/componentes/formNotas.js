@@ -55,7 +55,7 @@ function criaComponenteTextareaTexto(notaAlterada){
     //  return React.createElement(FormTextarea,props)
 }
 
-function criaComponenteBotaoConcluido(adicionarNota, posicao, notaAlterada){
+function criaComponenteBotaoConcluido(adicionarNota, notaAlterada){
     const props = {
         className: 'note__control', 
         type: 'button',
@@ -69,7 +69,7 @@ function criaComponenteBotaoConcluido(adicionarNota, posicao, notaAlterada){
     return <FormButton {...props}>{children}</FormButton>
 }
 
-function criaComponenteBotaoRemover(removerNota, posicao){
+function criaComponenteBotaoRemover(removerNota, notaAlterada){
     const props = {
         className: 'note__control', 
         type: 'button', 
@@ -93,20 +93,23 @@ function criaComponenteBotaoRemover(removerNota, posicao){
     return <FormButton {...props}>{children}</FormButton> 
 }
 
-function FormNotas({notaAtual, posicao, adicionarNota, removerNota, editarFormulario}) {
+function FormNotas({notaAtual, adicionarNota, removerNota, editarFormulario}) {
     
     // é uma copia da nota passada nos parametros pra criar os elementos
-    let notaAlterada = new Nota(notaAtual.titulo, notaAtual.texto, notaAtual.editando);
+    let notaAlterada = new Nota(notaAtual.posicao, notaAtual.titulo, notaAtual.texto, notaAtual.editando);
 
-    let inputTitulo = criaComponenteInputTitulo(notaAlterada, posicao);
-    let textareaTexto = criaComponenteTextareaTexto(notaAlterada, posicao);
-    let botaoRemover = criaComponenteBotaoRemover(removerNota, posicao);
-    let botaoConcluido = criaComponenteBotaoConcluido(adicionarNota, posicao, notaAlterada);
+    let inputTitulo = criaComponenteInputTitulo(notaAlterada);
+    let textareaTexto = criaComponenteTextareaTexto(notaAlterada);
+    let botaoRemover = criaComponenteBotaoRemover(removerNota);
+    let botaoConcluido = criaComponenteBotaoConcluido(adicionarNota, notaAlterada);
 
     let props = {
         className: 'note',
     };
  
+    if(notaAlterada.posicao!== undefined &&  ){
+
+    }
     return (
         <Form {...props}>
         {/*ou : <Form className="note">*/}

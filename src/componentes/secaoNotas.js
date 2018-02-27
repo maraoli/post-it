@@ -10,13 +10,12 @@ import FormNotas from './formNotas'
 
 function montaUmFormNotas(posicao, notaAtual, adicionarNota, removerNota, editarFormulario) {
     const props = {
-        key: posicao,
         notaAtual: listaNotas[posicao],
         removerNota,
         adicionarNota,
         editarFormulario,
     }
-    return <FormNotas key={posicao} {...props} />
+    return <FormNotas key={notaAtual.posicao} {...props} />
 }
 
 function SecaoNotas({listaNotas,adicionarNota,removerNota, editarFormulario}){
@@ -27,7 +26,7 @@ function SecaoNotas({listaNotas,adicionarNota,removerNota, editarFormulario}){
     return (
         <Section {...props}>
             {listaNotas.map((notaAtual, posicao) => (
-                montaUmFormNota(posicao, notaAtual, adicionarNota, removerNota, editarFormulario)
+                montaUmFormNota(notaAtual, adicionarNota, removerNota, editarFormulario)
                 // montaUmFormNota(adicionarNota, excluirNota, editarNota, notaAtual, index)
             ))}
         </Section>
