@@ -1,8 +1,17 @@
 export default class Nota {
-    constructor(novoTitulo, novoTexto, novoEditando = false /*icone = null*/) {
+    constructor(novaPosicao, novoTitulo, novoTexto, novoEditando = false /*icone = null*/) {
+        this._posicao = novaPosicao;
         this._titulo = novoTitulo;
         this._texto = novoTexto;
         this._editando = novoEditando;
+    }
+
+    get posicao() {
+        return this._titulo;
+    }
+
+    set posicao(novaPosicao) {
+        this._posicao = novaPosicao;
     }
 
     get titulo() {

@@ -17,8 +17,8 @@ export default function postitApp(estadoAtual = estadoInicial, acao){
     switch(acao.type){
         // concat
         case ADICIONAR_NOTA:
-            // passado pelo action os parametros, no add nota
-            const notaNova = new Nota(acao.titulo, acao.texto)
+            // preciso passa a posicao do backend
+            const notaNova = new Nota(acao.titulo, acao.texto, acao.posicao)
             const estadoNovo ={
                 notas: estadoAtual.notas.concat(novaNota)
             };
@@ -26,19 +26,19 @@ export default function postitApp(estadoAtual = estadoInicial, acao){
         // map , funcao filter
         case REMOVER_NOTA:
             const estadoNovo2 ={
-                // filter exe funcao pra cada item da lista , é declarativo , com for dentro
-                notas: estadoAtual.notas.filter((nota, posicao) =>{
-                    return posicao!==acao.posicao
+                // posicao ta dentro da nota
+                notas: estadoAtual.notas.filter((notaAtual) =>{
+                    return notaAtual.posicao!==acao.posicao
                 })
             };
             return estadoNovo2;
         // map - qual item tenho q inserir na lista
         case HABILITAR_NOTA:
             const estadoNovo3 ={
-                notas: estadoAtual.notas.map((nota, posicao) =>{
-                    if(posicao === acao.posicao){
+                notas: estadoAtual.notas.map((notaAtual.posicao) =>{
+                    if(notaAtual.posicao === acao.posicao){
                         //ou:  return {...nota,editando: true}
-                        return new Nota(nota.titulo, nota.texto, true)
+                        return new Nota(notaAtual.posicao, nota.titulo, nota.texto, true)
                     }
                     return nota
 
@@ -49,9 +49,9 @@ export default function postitApp(estadoAtual = estadoInicial, acao){
         // map
         case ALTERAR_NOTA:
             const estadoNovo4 = {
-                notas: estadoAtual.notas.map((nota, posicao) =>{
-                    if(posicao === acao.posicao){
-                        return new Nota(acoa.titulo, acao.texto, false)
+                notas: estadoAtual.notas.map((notaAtual) =>{
+                    if(notaAtual.posicao === acao.posicao){
+                        return new Nota(acao.posicao, acao.titulo, acao.texto, false)
                     }
                     else{
                         return nota
