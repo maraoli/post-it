@@ -1,4 +1,4 @@
-import {postNota, deleteNota, putNota} from '../api'
+import {getNotas ,postNota, deleteNota, putNota} from '../api'
 
 export const LISTA_NOTA = 'LISTA_NOTA'
 export const ADICIONAR_NOTA = 'ADICIONAR_NOTA'

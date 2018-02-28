@@ -4,6 +4,10 @@ const http = axios.create({
     baseURL: 'https://limitless-harbor-35826.herokuapp.com'
 })
 
+export function getNotas(){
+    return http.get('/notas')
+}
+
 export function postNota(titulo, texto){
     // back dá o parametro do post notas
     return http.post('/notas' , {titulo, texto})

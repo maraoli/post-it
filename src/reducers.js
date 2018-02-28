@@ -6,7 +6,7 @@
 // fazer swite case pras actions
 // recebemos as coisa atraves do acao.atributo para modificar
 
-import {ADICIONAR_NOTA, REMOVER_NOTA, HABILITAR_NOTA, ALTERAR_NOTA, LOGA_USUARIO, DESLOGA_USUARIO} from './actions'
+import {ADICIONAR_NOTA, REMOVER_NOTA, HABILITAR_NOTA, ALTERAR_NOTA, LOGA_USUARIO, DESLOGA_USUARIO, LISTA_NOTA} from './actions'
 import ListaNotas from './listaNotas'
 
 const estadoInicial ={
@@ -16,6 +16,7 @@ const estadoInicial ={
 export default function postitApp(estadoAtual = estadoInicial, acao){
     switch(acao.type){
         case LISTA_NOTA:
+            // item pode ter qualquer nome, é o indice do for
             return acao.lista.map(item =>{
                 // editando começa como falso por deful
                 return new Nota(item.posicao, item.titulo, item.texto)
