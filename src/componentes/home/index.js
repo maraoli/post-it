@@ -91,7 +91,16 @@ class Page extends React.Component {
     }
 }
 
-// 22/02/18
+class Home extends React.Component{
+    componentDiMount(){
+        this.props.listaNotas()
+    }
+    render(){
+        const {usuario, listaNotas, adicionarNota, removerNota, editaFormulario}
+        const props = {className: 'home'}
+    }
+}
+
 function Page({listaNotas, adicionarNota, removerNota, editarFormulario}){
     const props = {className:'container'}
 

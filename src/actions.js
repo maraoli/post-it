@@ -1,5 +1,6 @@
 import {postNota, deleteNota, putNota} from '../api'
 
+export const LISTA_NOTA = 'LISTA_NOTA'
 export const ADICIONAR_NOTA = 'ADICIONAR_NOTA'
 export const REMOVER_NOTA = 'REMOVER_NOTA'
 export const HABILITAR_EDICAO = 'HABILITAR_EDICAO'
@@ -7,6 +8,22 @@ export const ALTERAR_NOTA = 'ALTERAR_NOTA'
 
 export const LOGA_USUARIO = 'LOGA_USUARIO'
 export const DESLOGA_USUARIO = 'DESLOGA_USUARIO'
+
+export function listaNotas(){
+    return dispatch =>{
+        getNotas()
+            .then(resposta=> {
+                // acao disaparada pra store
+                dispatch({
+                    type: LISTA_NOTA,
+                    lista: resposta.data.notas
+                })
+            })
+            .catch(erro =>{
+                console.log('Erro', erro)
+            })
+    }
+}
 
 export function adicionarNota(titulo, texto){
     return dispatch =>{

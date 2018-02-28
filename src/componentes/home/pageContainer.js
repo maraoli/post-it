@@ -21,6 +21,9 @@ const mapStateToProps = state => (
 //dispara as acoes, retorna um componente que page espera, es um objeto
 const mapDispatchToProps = dispatch => (
     {    
+        listarNotas: (){
+            
+        }
         // essas funções vem do form notas
         adicionarNota: (titulo, texto, formulario, posicao) => {
             if(posicao === undefined){

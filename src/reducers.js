@@ -15,6 +15,11 @@ const estadoInicial ={
 
 export default function postitApp(estadoAtual = estadoInicial, acao){
     switch(acao.type){
+        case LISTA_NOTA:
+            return acao.lista.map(item =>{
+                // editando começa como falso por deful
+                return new Nota(item.posicao, item.titulo, item.texto)
+            })
         // concat
         case ADICIONAR_NOTA:
             // preciso passa a posicao do backend
